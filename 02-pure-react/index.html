@@ -14,9 +14,17 @@
   <!-- component -->
   <script>
     function App(params) {
-      const time = new Date().toLocaleTimeString();
+      // const time = new Date().toLocaleTimeString();
       // state
-      const [time, setTime] = React.useState()
+      const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+      // effect
+      React.useEffect(() => {
+        setInterval(() => {
+          setTime(new Date().toLocaleTimeString());
+        }, 1000);        
+      }, [])
+      
 
       return React.createElement('header',null, `Hello React! It's ${time}`);
     }
