@@ -14,7 +14,11 @@
   <!-- component -->
   <script>
     function App(params) {
-      return React.createElement('header',null, 'Hello React!')
+      const time = new Date().toLocaleTimeString();
+      // state
+      const [time, setTime] = React.useState()
+
+      return React.createElement('header',null, `Hello React! It's ${time}`);
     }
 
     const root = ReactDOM.createRoot(document.getElementById('root'));
