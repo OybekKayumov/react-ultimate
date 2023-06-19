@@ -236,3 +236,18 @@ const spanishTranslation = book.translations.spanish || 'Not Translated';
 console.log(book.reviews.librarything.reviewsCount);
 const countWrong = book.reviews.librarything.reviewsCount || "No Data";
 
+//! nullish coalescing operator (??) will only return the second value when the first value is null or undefined, but not when it is zero or an empty string
+const count = book.reviews.librarything.reviewsCount ?? "No Data"
+
+// TODO: Optional Chaining
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  // whenever "book.reviews.librarything" is undefined, JS will no longer even try to read reviewsCount here
+  // it will continue if "book.reviews.librarything" is not null
+  // if null, default iz 0 --> ?? 0
+
+  return goodreads + librarything;
+}
+
+console.log( getTotalReviewCount(book));
