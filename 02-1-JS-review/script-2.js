@@ -178,3 +178,11 @@ const essentialData = books.map(book => ({
 }))
 
 essentialData;
+
+
+// TODO: The Array filter Method
+const longBooksWithMovies = books
+  .filter(book => book.pages > 500)
+  .filter(book =>book.hasMovieAdaptation);  // returns if true
+longBooksWithMovies;
+
