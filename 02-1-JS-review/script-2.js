@@ -186,3 +186,9 @@ const longBooksWithMovies = books
   .filter(book =>book.hasMovieAdaptation);  // returns if true
 longBooksWithMovies;
 
+const adventureBooks = books
+  .filter(books => books.genres.includes('adventure'))
+  .map(book => book.title);
+adventureBooks;
+
+
