@@ -197,3 +197,8 @@ updatedBook;
 // this is how we do it.
 // So we use the spread operator
 // and the same is true for a rest.
+
+// TODO: Template Literals
+const summary = `${title}, a ${pages}-pages long book, written by ${author} and published in ${publicationDate.split("-")[0]}`;
+summary;
+// 1954-07-29 --> .split("-")[0]
