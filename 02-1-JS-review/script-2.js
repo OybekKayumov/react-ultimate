@@ -155,6 +155,15 @@ const books = getBooks();
 const titles = books.map(book => book.title);
 titles;
 
+//
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;  
+
+  return goodreads + librarything;
+}
+//
+
 // const essentialData = books.map(book => {
 //   return {
 //     title: book.title,
@@ -165,7 +174,7 @@ titles;
 const essentialData = books.map(book => ({
   title: book.title,
   author: book.author,
-  
+  reviewsCount: getTotalReviewCount(book),
 }))
 
 essentialData;
