@@ -144,11 +144,56 @@ function getBook(id) {
 }
 
 //TODO: Destructuring
-const book = getBook (2);
+const book = getBook (1);
 
 // const title = book.title;
 // const author = book.author;
 // title; 
 // author;
 
-const { title, author } = book;
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book;
+
+console.log(': ', author, title, genres);
+
+//todo: array destructuring
+// const primaryGenre = genres[0];
+// const secondaryGenre = genres[1];
+
+// const [primaryGenre, secondaryGenre] = genres;
+
+// console.log(': ', primaryGenre, secondaryGenre);
+
+//TODO: Rest/Spread Operator
+// get all the other elements in array after 0 and 1 
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+console.log(': ', primaryGenre, secondaryGenre, otherGenres);
+// science fiction humor [ 'speculative fiction', 'short stories', 'fantasy' ]
+
+// spread
+// const newGenres = [genres, 'epic fantasy'];
+const newGenres = [...genres, 'epic fantasy'];
+newGenres;
+
+//todo: Objects
+const updatedBook = {
+  ...book,
+  // Adding a new property
+  moviePublicationDate: '2001-12-19',
+  
+  // Overwriting an existing property
+  pages: 1210,
+}
+
+updatedBook;
+// So whenever we want to do this, the spread-operator original object needs to be first.
+
+// adding a new property and then overriding an existing property.
+// this is going to be really important when we work with React
+// because when we want to update objects in state,
+// we will need to use this technique.
+
+// But for now, just keep in mind that when we want to create a new object
+// and then add new properties to it or override existing ones
+// this is how we do it.
+// So we use the spread operator
+// and the same is true for a rest.
