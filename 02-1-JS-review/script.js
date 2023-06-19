@@ -218,3 +218,21 @@ const getYearArrow = str => str.split('-')[0]
 
 console.log(': ', getYearArrow(publicationDate));
 
+// TODO: Short-Circuiting And Logical Operators: &&, ||, ??
+console.log(true && 'Some string');
+console.log(false && 'Some string'); // false
+
+// falsy values: 0, '', null, undefined
+console.log('coder' && 'returns this string');
+console.log(0 && 'returns this string'); // 0 
+
+// returns fist true
+console.log(true || 'returns this string'); // true
+console.log(false || 'returns this string'); // returns this string
+
+console.log(book.translations.spanish);
+const spanishTranslation = book.translations.spanish || 'Not Translated';
+
+console.log(book.reviews.librarything.reviewsCount);
+const countWrong = book.reviews.librarything.reviewsCount || "No Data";
+
