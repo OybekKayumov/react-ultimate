@@ -145,6 +145,7 @@ function getBook(id) {
 
 //TODO: Destructuring
 const book = getBook (1);
+// const book = getBook (2);
 
 // const title = book.title;
 // const author = book.author;
@@ -202,3 +203,18 @@ updatedBook;
 const summary = `${title}, a ${pages}-pages long book, written by ${author} and published in ${publicationDate.split("-")[0]}`;
 summary;
 // 1954-07-29 --> .split("-")[0]
+
+// TODO: Ternaries Instead of if/else Statements
+const pagesRange = pages > 1000 ? 'over a thousand' : 'less than 1000'
+pagesRange;
+
+// TODO: Arrow Functions
+// fn declaration
+function getYear(str) {
+  return str.split('-')[0]
+}
+
+const getYearArrow = str => str.split('-')[0]
+
+console.log(': ', getYearArrow(publicationDate));
+
