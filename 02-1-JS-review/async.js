@@ -7,3 +7,14 @@ fetch("https://jsonplaceholder.typicode.com/todos")
   .then(data => console.log(data ))
 
 console.log('Fetch: ', );  // runs 1st
+
+// TODO: Asynchronous JavaScript: Async/Await
+async function getUsers() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  const data = await res.json();
+  console.log('data: ', data );
+}
+
+getUsers();
+
+console.log('users: ');
