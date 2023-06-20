@@ -191,4 +191,27 @@ const adventureBooks = books
   .map(book => book.title);
 adventureBooks;
 
+// TODO: The Array reduce Method
+const pagesAllBooks = books.reduce((acc, cur) => acc + cur.pages, 0);
+pagesAllBooks; // 3227
+
+// TODO: The Array sort Method
+const arr = [3, 7, 1, 9, 6];
+// in an ascending - по возрастанию - way, we do a minus b.
+// a and b are always current and next values
+// small number will come first
+// const sorted = arr.sort((a, b) => a - b); 
+// sorted;
+arr; // arr also sorted, mutates original array;
+
+// take copy and sort, it will not mutate the original array
+const sortedNoMutate = arr.slice().sort((a,b) => a-b);
+sortedNoMutate;
+arr; // not changed
+
+// descending sort
+const sortedByPages = books.slice().sort((a,b) => b.pages - a.pages);
+sortedByPages;
+
+// TODO: Working With Immutable Arrays
 
