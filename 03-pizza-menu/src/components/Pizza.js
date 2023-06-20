@@ -2,6 +2,6 @@
 
 export default function Pizza(params) {
   return (
-    <h2>Pizza</h2> 
+    <h3>Pizza</h3> 
   )
 }

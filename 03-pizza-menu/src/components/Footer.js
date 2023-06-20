@@ -12,9 +12,9 @@ const Footer = () => {
   // }
 
   const isOpen = hour >= openHour && hour <= closeHour;
-  
+
   return (
-    <footer>
+    <footer className='footer'>
       We're currently open!
     </footer>
   )
