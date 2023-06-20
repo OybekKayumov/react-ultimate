@@ -214,4 +214,17 @@ const sortedByPages = books.slice().sort((a,b) => b.pages - a.pages);
 sortedByPages;
 
 // TODO: Working With Immutable Arrays
+// 1. add book obj to array
+const newBook = {
+  id: 6,
+  title: 'Harry Potter and the Chamber of Secrets',
+  author: 'J. K. Rowling',
+};
 
+// spread all and add another object
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+// 2. delete book obj from array
+const booksAfterDelete = booksAfterAdd.filter(book => book.id !== 3);
+booksAfterDelete;
