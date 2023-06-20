@@ -228,3 +228,13 @@ booksAfterAdd;
 // 2. delete book obj from array
 const booksAfterDelete = booksAfterAdd.filter(book => book.id !== 3);
 booksAfterDelete;
+
+// 3. update book obj in the array
+// if book id == 1,then return empty object {}
+const booksAfterUpdate = booksAfterDelete.map(book => 
+  // book.id === 1 ? {} : book
+  // or update page numbers to 12 using spread operator,and other keep unchanged(: book)
+  book.id === 1 ? {...book, pages: 12} : book
+);
+
+booksAfterUpdate;
