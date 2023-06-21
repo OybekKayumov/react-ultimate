@@ -9,14 +9,14 @@ const Menu = () => {
         name='Pizza Spinaci' 
         ingredients='tomato,...'
         photoName='pizzas/spinaci.jpg'
-        price='10'
+        price={10}
       />
 
       <Pizza 
         name='Pizza Funghi' 
         ingredients='mushrooms,...'
         photoName='pizzas/funghi.jpg'
-        price='12'
+        price={12}
       />
     </main>
   )
