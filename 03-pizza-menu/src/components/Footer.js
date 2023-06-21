@@ -14,7 +14,7 @@ const Footer = () => {
       {/* if true, than execute next part */}
       {/* {isOpen && ( */}
       {isOpen ? (
-        <Order closeHour={closeHour} />
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (
         <div className="order">
           <p>
