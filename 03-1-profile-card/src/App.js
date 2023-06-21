@@ -31,11 +31,26 @@ function Intro() {
 }
 
 function Skillist() {
-  
+  return (
+    <div className="skill-list">
+      <Skill skill='React' emoji='💪' color='blue'/>
+      <Skill skill='HTML+CSS' emoji='❤' color='orangered'/>
+      <Skill skill='JavaScript' emoji='👍' color='yellow'/>
+      <Skill skill='Ruby' emoji='⭐' color='#00FF00'/>
+      <Skill skill='Rails' emoji='✔' color='green'/>
+      <Skill skill='SQL+NoSQL' emoji='☀' color='red'/>
+      <Skill skill='AWS' emoji='⛅' color='#40E0D0'/>
+    </div>
+  )
 }
 
-function Skill() {
-  
+function Skill(props) {
+  return (
+    <div className="skill" style={{backgroundColor: props.color}}>
+      <span>{props.skill}</span>
+      <span>{props.emoji}</span>
+    </div>
+  )
 }
 
 export default App;
