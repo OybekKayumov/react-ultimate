@@ -2,16 +2,11 @@ import React from 'react'
 
 const Footer = () => {
   const hour = new Date().getHours();
-  const openHour = 13;
+  const openHour = 12;
   const closeHour = 22;
-
-  // if (hour >= openHour && hour <= closeHour) {
-  //   alert("We're currently open")
-  // } else {
-  //   alert("Sorry, we're closed")
-  // }
-
   const isOpen = hour >= openHour && hour <= closeHour;
+
+  // if (!isOpen) return <p>Closed!</p>
 
   return (
     <footer className='footer'>
@@ -35,4 +30,11 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Footer;
+
+
+  // if (hour >= openHour && hour <= closeHour) {
+  //   alert("We're currently open")
+  // } else {
+  //   alert("Sorry, we're closed")
+  // }
