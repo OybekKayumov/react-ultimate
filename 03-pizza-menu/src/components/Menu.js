@@ -10,31 +10,44 @@ const Menu = () => {
   return (
     <main className='menu'>
       <h2>Our menu</h2>
+
+      {/*  
       { numPizzas > 0 && (
         <ul className='pizzas'>
-        {/* {pizzaData.map(pizza => <Pizza name={pizza.name}/>)} */}
-        {/* {pizzaData.map(pizza => <Pizza pizzaObj={pizza} key={pizza.name}/>)} */}
         {pizzas.map(pizza => <Pizza pizzaObj={pizza} key={pizza.name}/>)}
       </ul>
       )}
-
-      {/*
-      <Pizza 
-        name='Pizza Spinaci' 
-        ingredients='tomato,...'
-        photoName='pizzas/spinaci.jpg'
-        price={10}
-      />
-
-      <Pizza 
-        name='Pizza Funghi' 
-        ingredients='mushrooms,...'
-        photoName='pizzas/funghi.jpg'
-        price={12}
-      />
       */}
+      { numPizzas > 0 ? (
+        <ul className='pizzas'>
+        {pizzas.map(pizza => <Pizza pizzaObj={pizza} key={pizza.name}/>)}
+      </ul>
+      ) : (
+        null
+      )}
+
     </main>
   )
 }
 
 export default Menu;
+
+
+{/* {pizzaData.map(pizza => <Pizza name={pizza.name}/>)} */}
+{/* {pizzaData.map(pizza => <Pizza pizzaObj={pizza} key={pizza.name}/>)} */}
+
+{/*
+<Pizza 
+  name='Pizza Spinaci' 
+  ingredients='tomato,...'
+  photoName='pizzas/spinaci.jpg'
+  price={10}
+/>
+
+<Pizza 
+  name='Pizza Funghi' 
+  ingredients='mushrooms,...'
+  photoName='pizzas/funghi.jpg'
+  price={12}
+/>
+*/}
