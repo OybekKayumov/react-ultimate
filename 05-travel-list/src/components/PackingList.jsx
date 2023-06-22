@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { initialItems } from '../data/data';
 
 const PackingList = () => {
   return (
-    <div className='list'>
-      List
-    </div>
+    <ul className='list'>
+      {}
+    </ul>
   )
 }
 
