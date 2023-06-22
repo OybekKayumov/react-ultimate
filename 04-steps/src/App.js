@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 
 const messages = [
@@ -8,10 +9,15 @@ const messages = [
 
 
 function App() {
-  const step = 1;
+  // const step = 1;
+  const [step, setStep] = useState(1)
 
   function handlePrev() {
-    
+    setStep(step - 1)
+  }
+
+  function handleNext() {
+    setStep(step + 1)
   }
 
   return (
@@ -29,12 +35,15 @@ function App() {
       <div className="buttons">
         <button 
           style={{backgroundColor: '#7950f2', color: "#fff" }}
-          onClick={() => alert('Prev')}
+          onClick={handlePrev}
           // onMouseEnter={alert("123")}  //!
         >
           Previous
         </button>
-        <button style={{backgroundColor: '#7950f2', color: "#fff" }}>
+        <button 
+          style={{backgroundColor: '#7950f2', color: "#fff" }}
+          onClick={handleNext}
+        >
           Next
         </button>
       </div>
