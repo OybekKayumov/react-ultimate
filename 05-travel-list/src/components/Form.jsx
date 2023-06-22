@@ -8,10 +8,16 @@ const Form = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
+    // if no data entered for description, do not create newItem object
+    if (!description) return;
+
     const newItem = {description, quantity, packed: false, id: Date.now()};
 
     console.log('newItem Object: ', newItem);
 
+    // setter fns to empty inputs
+    setDescription('');
+    setQuantity(1);
   }
 
   return (
