@@ -16,17 +16,19 @@ function App() {
   // const [test, setTest] = useState({ name: 'John' });
 
   function handlePrev() {
-    if (step > 1) setStep(step - 1)
+    // if (step > 1) setStep(step - 1)
+    if (step > 1) setStep((curStep) => curStep - 1)
   }
 
   function handleNext() {
-    if (step < 3) setStep(step + 1)
+    // if (step < 3) setStep(step + 1)
+    if (step < 3) setStep((curStep) => curStep + 1)
+    // if (step < 3) setStep((curStep) => curStep + 1) // +2
 
     // BAD PRACTICE
     // step = step + 1;  //! 
     // test.name = 'Joe'
     // setTest({ name: 'Joe' });
-
   }
 
   return (
