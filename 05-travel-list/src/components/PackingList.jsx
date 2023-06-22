@@ -7,7 +7,7 @@ const PackingList = () => {
     <div className='list'>
       <ul>
         {initialItems.map(item => (
-          <Item item={item} />
+          <Item item={item} key={item.id} />
         ))}
       </ul>
     </div>
