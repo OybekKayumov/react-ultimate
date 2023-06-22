@@ -3,7 +3,7 @@ import React from 'react'
 const Item = ({item}) => {
   return (
     <li>
-      <span>
+      <span style={item.packed ? {textDecoration: "line-through"} : {}}>
         {item.quantity} {item.description}
       </span>
 
