@@ -5,6 +5,16 @@ const Form = () => {
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState(1);
 
+  // save object
+  // const [item, setItems] = useState([]);
+  function handleAddItems(item) {
+    // it will be current items array plus the new item added to the end
+    // we cannot do like:
+    // setItems(items => items.push(item)) //! mutating - not allowed in React
+     setItems(items => [...items, item])  // spread current items and other item
+
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -14,6 +24,8 @@ const Form = () => {
     const newItem = {description, quantity, packed: false, id: Date.now()};
 
     console.log('newItem Object: ', newItem);
+    // save item
+    handleAddItems(newItem);
 
     // setter fns to empty inputs
     setDescription('');
