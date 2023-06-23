@@ -18,6 +18,8 @@ const Form = () => {
     // setter fns to empty inputs
     setDescription('');
     setQuantity(1);
+
+    //! send data from Form to PackingList - state between siblings
   }
 
   return (
