@@ -18,11 +18,17 @@ function App() {
      setItems(items => [...items, item])  // spread current items and other item
   }
 
+  // Deleting an Item: More Child-to-Parent Communication
+  // filter returns new array without id
+  function handleDeleteItem(id) {
+    setItems(items => items.filter(item => item.id !== id))
+  }
+  
   return (
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddItems} />
-      <PackingList items={items}/>
+      <PackingList items={items} onDeleteItem={handleDeleteItem}/>
       <Stats />
     </div>
   );
