@@ -49,8 +49,10 @@ function FlashCards() {
     // 2. use that state variable
     // 3. update it
 
+  // 3
   const handleClick = (id) => {
-    setSelectedId(id);
+    // if the question ID is different from the already selected ID, then set the ID. But if not, so basically if the question ID is already equal to the selected ID then set it back to null. And so with null, then none of them will be active.
+    setSelectedId(id !== selectedId ? id : null);
   }
 
   return (
