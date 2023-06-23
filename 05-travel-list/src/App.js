@@ -12,12 +12,16 @@ import Stats from './components/Stats';
 // ];
 
 function App() {
+  // from Form component to PackingList component
   const [items, setItems] = useState([]);
+  function handleAddItems(item) {
+     setItems(items => [...items, item])  // spread current items and other item
+  }
 
   return (
     <div className="app">
       <Logo />
-      <Form />
+      <Form onAddItems={handleAddItems} />
       <PackingList items={items}/>
       <Stats />
     </div>

@@ -1,19 +1,18 @@
 import React from 'react'
 import { useState } from 'react';
 
-const Form = () => {
+const Form = ({ onAddItems }) => {
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState(1);
 
   // save object
-  // const [item, setItems] = useState([]);
-  function handleAddItems(item) {
+  // const [items, setItems] = useState([]);
+  // function handleAddItems(item) {
     // it will be current items array plus the new item added to the end
     // we cannot do like:
     // setItems(items => items.push(item)) //! mutating - not allowed in React
-     setItems(items => [...items, item])  // spread current items and other item
-
-  }
+    //  setItems(items => [...items, item])  // spread current items and other item
+  // }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -25,7 +24,8 @@ const Form = () => {
 
     console.log('newItem Object: ', newItem);
     // save item
-    handleAddItems(newItem);
+    // handleAddItems(newItem);
+    onAddItems(newItem);
 
     // setter fns to empty inputs
     setDescription('');
