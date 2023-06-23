@@ -1,7 +1,6 @@
 import React from 'react';
 import { initialItems } from '../data/data';
 import Item from './Item';
-import { on } from 'events';
 
 const PackingList = ({ items, onDeleteItem }) => { 
   // items come from Form component throw parent App
