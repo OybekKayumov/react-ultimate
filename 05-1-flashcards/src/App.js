@@ -49,14 +49,20 @@ function FlashCards() {
     // 2. use that state variable
     // 3. update it
 
+  const handleClick = (id) => {
+    setSelectedId(id);
+  }
+
   return (
     <div className="flashcards">
       {questions.map(q => (
         <div 
           key={q.id} 
-          className={q.id === selectedId ? "selected" : ""}
+          className={q.id === selectedId ? "selected" : ""}  // 2
+          onClick={() => handleClick(q.id)}  // 3
         >
-          <p>{q.id === selectedId ? q.answer : q.question}</p>
+          {/* 2 */}
+          <p>{q.id === selectedId ? q.answer : q.question}</p> 
         </div>
       ))}
     </div>
