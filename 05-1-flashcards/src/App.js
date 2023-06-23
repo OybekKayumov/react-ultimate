@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 const questions = [
   {
@@ -42,11 +43,20 @@ function App() {
 }
 
 function FlashCards() {
+  const [selectedId, setSelectedId] = useState(null);
+  // 3 steps of using state
+    // 1. define the state variable
+    // 2. use that state variable
+    // 3. update it
+
   return (
     <div className="flashcards">
       {questions.map(q => (
-        <div key={q.id}>
-          <p>{q.question}</p>
+        <div 
+          key={q.id} 
+          className={q.id === selectedId ? "selected" : ""}
+        >
+          <p>{q.id === selectedId ? q.answer : q.question}</p>
         </div>
       ))}
     </div>
