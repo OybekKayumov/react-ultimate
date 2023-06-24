@@ -1,6 +1,14 @@
 import React from 'react'
 
 const Stats = ({ items }) => {
+  if (!items.length) { // if no items
+    return (
+      <p className='stats'>
+        <em>Start adding some items to your packing list!</em>
+      </p>
+    )
+  }
+
   // Calculating Statistics as Derived State
   const numItems = items.length;
   const numPacked = items.filter(item => item.packed).length;
