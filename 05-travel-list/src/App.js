@@ -14,6 +14,10 @@ import Stats from './components/Stats';
 function App() {
   // from Form component to PackingList component
   const [items, setItems] = useState([]);
+
+  // Calculating Statistics as Derived State
+  const numItems = items.length;
+
   function handleAddItems(item) {
      setItems(items => [...items, item])  // spread current items and other item
   }
