@@ -13,11 +13,23 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
   let sortedItems;
   if (sortBy === 'input') sortedItems = items;
 
+  // sorting alphabetically
+  if (sortBy === 'description') 
+    sortedItems = items
+      .slice()
+      .sort((a, b) => a.description.localeCompare(b.description));
+
+  if (sortBy === 'packed') 
+    sortedItems = items
+      .slice()
+      .sort((a, b) => Number(a.packed) - Number(b.packed));
+
   return (
     <div className='list'>
       <ul>
         {/* {initialItems.map(item => ( */}
-        {items.map(item => (
+        {/* {items.map(item => ( */}
+        {sortedItems.map(item => (
           <Item 
             item={item} 
             onDeleteItem={onDeleteItem}
