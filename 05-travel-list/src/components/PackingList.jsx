@@ -17,6 +17,15 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
           />
         ))}
       </ul>
+
+      {/* sorting */}
+      <div className='actions'>
+        <select name="" id="">
+          <option value="input">Sort By Input Order</option>
+          <option value="description">Sort By Description</option>
+          <option value="packed">Sort By Packed Status</option>
+        </select>
+      </div>
     </div>
   )
 }
