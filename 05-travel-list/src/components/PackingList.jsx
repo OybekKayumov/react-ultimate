@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { initialItems } from '../data/data';
 import Item from './Item';
 
-const PackingList = ({ items, onDeleteItem, onToggleItem }) => { 
+const PackingList = ({ 
+    items, 
+    onDeleteItem, 
+    onToggleItem,
+    onClearList 
+  }) => { 
   // items come from Form component throw parent App
 
   // add state, 3 steps
@@ -50,6 +55,8 @@ const PackingList = ({ items, onDeleteItem, onToggleItem }) => {
           <option value="description">Sort By Description</option>
           <option value="packed">Sort By Packed Status</option>
         </select>
+
+        <button onClick={onClearList}>Clear List</button>
       </div>
     </div>
   )
