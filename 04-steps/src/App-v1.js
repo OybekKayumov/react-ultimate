@@ -11,6 +11,7 @@ export default function App() {
   return (
     <div>
       <Steps />
+      <Steps />
     </div>
   )
 }
@@ -62,39 +63,24 @@ function Steps() {
           </p>
 
           <div className="buttons">
-            <Button 
-              bgColor='#7950f2' 
-              textColor="#fff"
-              text='Prev'
-              emoji='◀'
+            <button 
+              style={{backgroundColor: '#7950f2', color: "#fff" }}
               onClick={handlePrev}
+              // onMouseEnter={alert("123")}  //!
             >
-            </Button>
-
-            <Button 
-              bgColor='#7950f2' 
-              textColor="#fff"
-              text='Next'
-              emoji='▶'
+              Previous
+            </button>
+            <button 
+              style={{backgroundColor: '#7950f2', color: "#fff" }}
               onClick={handleNext}
             >
-            </Button>
+              Next
+            </button>
           </div>
         </div>
       )}
     </div>
   );
-}
-
-function Button({ textColor, bgColor, onClick, text, emoji }) {
-  return (
-    <button 
-      style={{backgroundColor: bgColor, color: textColor }}
-      onClick={onClick}
-    >
-      <span>{emoji}</span> {text}
-    </button>
-  )
 }
 
 // export default App;
