@@ -16,7 +16,7 @@ function App() {
   const [items, setItems] = useState([]);
 
   // Calculating Statistics as Derived State
-  const numItems = items.length;
+  // const numItems = items.length;
 
   function handleAddItems(item) {
      setItems(items => [...items, item])  // spread current items and other item
@@ -46,7 +46,7 @@ function App() {
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
       />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }
