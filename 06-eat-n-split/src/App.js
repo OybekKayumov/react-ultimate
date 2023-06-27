@@ -58,6 +58,8 @@ function App() {
           : friend
       )
     );
+
+    setSelectedFriend(null);
   }
 
   return (
