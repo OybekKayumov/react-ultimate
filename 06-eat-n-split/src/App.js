@@ -50,6 +50,14 @@ function App() {
 
   function handleSplitBill(value) {
     console.log('value: ', value);
+
+    setFriends(friends => 
+      friends.map(friend => 
+        friend.id === selectedFriend.id 
+          ? {...friend, balance: friend.balance + value} 
+          : friend
+      )
+    );
   }
 
   return (
@@ -202,7 +210,7 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
     // guard preventing form from being submitted if there no bill...
     if (!bill || !paidByUser) return;
 
-    onSplitBill();
+    onSplitBill(whoIsPaying === 'user' ? paidByFriend : -paidByUser);
   }
 
   return (
