@@ -56,9 +56,7 @@ export default function App() {
   return (
     <>
       <NavBar />
-
       <Main />
-      
     </>
   );
 }
@@ -106,14 +104,14 @@ function NumResults() {
   )
 }
 
-function Main() {  
+function Main() {
   
   return (
     <main className="main">
       <ListBox />
 
       <WatchedBox />
-      </main>
+    </main>
   )
 }
 
