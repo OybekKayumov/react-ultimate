@@ -48,6 +48,10 @@ function App() {
     setShowAddFriend(false);
   }
 
+  function handleSplitBill(value) {
+    console.log('value: ', value);
+  }
+
   return (
     <div className="app">
       <div className='sidebar'>
@@ -69,6 +73,7 @@ function App() {
       { selectedFriend &&  
           <FormSplitBill 
             selectedFriend={selectedFriend}
+            onSplitBill={handleSplitBill}
           />
       }
     </div>
@@ -185,7 +190,7 @@ function FormAddFriend({ onAddFriend }) {
   )
 }
 
-function FormSplitBill({ selectedFriend }) {
+function FormSplitBill({ selectedFriend, onSplitBill }) {
   const [bill, setBill] = useState('');
   const [paidByUser, setPaidByUser] = useState('');
   const [whoIsPaying, setWhoIsPaying] = useState('user');
@@ -193,8 +198,11 @@ function FormSplitBill({ selectedFriend }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     
+    // guard preventing form from being submitted if there no bill...
+    if (!bill || !paidByUser) return;
+
+    onSplitBill();
   }
 
   return (
