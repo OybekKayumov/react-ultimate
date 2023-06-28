@@ -56,19 +56,28 @@ export default function App() {
 
   return (
     <>
-      <NavBar movies={movies} />
+      {/* <NavBar movies={movies}> */}
+      <NavBar>
+        {/* children */}
+        <Logo />
+        <Search />
+        <NumResults movies={movies} />
+      </NavBar>
+      
       <Main movies={movies} />
     </>
   );
 }
 
-function NavBar({ movies }) {
+// function NavBar({ movies }) {
+function NavBar({ children }) {
 
   return (
     <nav className="nav-bar">
-      <Logo />
+      {/* <Logo />
       <Search />
-      <NumResults movies={movies} />
+      <NumResults movies={movies} /> */}
+      {children}
     </nav>
   ) 
 }
