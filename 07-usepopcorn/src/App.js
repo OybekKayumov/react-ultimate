@@ -67,18 +67,29 @@ export default function App() {
       {/* <Main movies={movies}> */}
       <Main>        
             {/* <ListBox> */}
-        {/* <Box>
+        <Box>
           <MovieList movies={movies} />
-        </Box> */}
+        </Box>
          
             {/* <WatchedBox /> */}
-        {/* <Box>
+        <Box>
           <WatchedSummary watched={watched} />
           <WatchedMovieList watched={watched} />
         </Box>
-         */}
+        
 
-         <Box element={<MovieList movies={movies} />} />
+        {/* Passing Elements as Props (Alternative to children) */}
+{/*          
+        <Box element={<MovieList movies={movies} />} />
+
+        <Box 
+          element={
+            <>
+              <WatchedSummary watched={watched} />
+              <WatchedMovieList watched={watched} />
+            </>
+          }
+        /> */}
       </Main>
     </>
   );
@@ -160,8 +171,8 @@ function ListBox({ children }) {
 }
 */
 
-// function Box({ children }) {
-function Box({ element }) {
+function Box({ children }) {
+// function Box({ element }) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -173,8 +184,9 @@ function Box({ element }) {
         {isOpen ? "–" : "+"}
       </button>
 
-      {/* {isOpen && children} */}
-      {isOpen && element}
+      {isOpen && children}
+      {/* Passing Elements as Props (Alternative to children) */}
+      {/* {isOpen && element} */}
     </div>
   )
 }
