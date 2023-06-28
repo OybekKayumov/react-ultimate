@@ -59,12 +59,15 @@ export default function App() {
       {/* <NavBar movies={movies}> */}
       <NavBar>
         {/* children */}
-        <Logo />
         <Search />
         <NumResults movies={movies} />
       </NavBar>
       
-      <Main movies={movies} />
+      {/* <Main movies={movies}> */}
+      <Main>
+         <ListBox movies={movies} />
+         <WatchedBox />
+      </Main>
     </>
   );
 }
@@ -74,9 +77,9 @@ function NavBar({ children }) {
 
   return (
     <nav className="nav-bar">
-      {/* <Logo />
-      <Search />
+      {/* <Search />
       <NumResults movies={movies} /> */}
+      <Logo />
       {children}
     </nav>
   ) 
@@ -113,13 +116,14 @@ function NumResults({ movies }) {
   )
 }
 
-function Main({ movies }) {
+// function Main({ movies }) {
+function Main({ children }) {
   
   return (
     <main className="main">
-      <ListBox movies={movies} />
-
-      <WatchedBox />
+      {/* <ListBox movies={movies} />
+      <WatchedBox /> */}
+      {children}
     </main>
   )
 }
