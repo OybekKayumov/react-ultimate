@@ -78,9 +78,14 @@ function TabContent({ item }) {
   }
 
   function handleTripleInc() {
-    setLikes(likes + 1);  // likes = 0
-    setLikes(likes + 1);  // likes = 0
-    setLikes(likes + 1);  // likes = 0, result is 1
+    // setLikes(likes + 1);  // likes = 0 + 1
+    // setLikes(likes + 1);  // likes = 0 + 1
+    // setLikes(likes + 1);  // likes = 0 + 1, result is 1
+
+    // use callback fn, current value => return new value
+    setLikes(likes => likes + 1); // likes = 1
+    setLikes(likes => likes + 1); // likes = 2
+    setLikes(likes => likes + 1); // likes = 3, result is 3
   }
 
   function handleUndo() {
