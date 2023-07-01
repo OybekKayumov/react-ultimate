@@ -50,36 +50,46 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-const KEY = 'key'
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
-  
-  fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
-    .then(res => res.json())
-    .then(data => console.log('data: ',data))
-    // .then(data => setMovies(data.Search))  //! too many renders
-  
-  // setWatched([]);  //! too many renders
+  const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatched] = useState(tempWatchedData);
 
   return (
     <>
+      {/* <NavBar movies={movies}> */}
       <NavBar>
         {/* children */}
         <Search />
         <NumResults movies={movies} />
       </NavBar>
       
+      {/* <Main movies={movies}> */}
       <Main>        
+            {/* <ListBox> */}
         <Box>
           <MovieList movies={movies} />
         </Box>
          
+            {/* <WatchedBox /> */}
         <Box>
           <WatchedSummary watched={watched} />
           <WatchedMovieList watched={watched} />
         </Box>
+        
+
+        {/* Passing Elements as Props (Alternative to children) */}
+{/*          
+        <Box element={<MovieList movies={movies} />} />
+
+        <Box 
+          element={
+            <>
+              <WatchedSummary watched={watched} />
+              <WatchedMovieList watched={watched} />
+            </>
+          }
+        /> */}
       </Main>
     </>
   );
@@ -90,6 +100,8 @@ function NavBar({ children }) {
 
   return (
     <nav className="nav-bar">
+      {/* <Search />
+      <NumResults movies={movies} /> */}
       <Logo />
       {children}
     </nav>
@@ -132,11 +144,32 @@ function Main({ children }) {
   
   return (
     <main className="main">
+      {/* <ListBox movies={movies} />
+      <WatchedBox /> */}
       {children}
     </main>
   )
 }
 
+// function ListBox({ movies }) {
+/*
+function ListBox({ children }) {
+  const [isOpen1, setIsOpen1] = useState(true);
+
+  return (
+    <div className="box">
+      <button
+        className="btn-toggle"
+        onClick={() => setIsOpen1((open) => !open)}
+      >
+        {isOpen1 ? "–" : "+"}
+      </button>
+
+      {isOpen1 && children}
+    </div>
+  )
+}
+*/
 
 function Box({ children }) {
 // function Box({ element }) {
@@ -151,10 +184,39 @@ function Box({ children }) {
         {isOpen ? "–" : "+"}
       </button>
 
-      {isOpen && children}      
+      {isOpen && children}
+      {/* Passing Elements as Props (Alternative to children) */}
+      {/* {isOpen && element} */}
     </div>
   )
 }
+
+/*
+function WatchedBox() {
+  const [watched, setWatched] = useState(tempWatchedData);
+  const [isOpen2, setIsOpen2] = useState(true);
+
+  return (
+    <div className="box">
+      <button
+        className="btn-toggle"
+        onClick={() => setIsOpen2((open) => !open)}
+      >
+        {isOpen2 ? "–" : "+"}
+      </button>
+      {isOpen2 && (
+        <>
+          <WatchedSummary 
+            watched={watched}
+          />
+
+          <WatchedMovieList  watched={watched} />
+        </>
+      )}
+    </div>
+  )
+}
+*/
 
 function MovieList({ movies }) {
   // const [movies, setMovies] = useState(tempMovieData);  // App
