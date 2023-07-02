@@ -60,14 +60,22 @@ export default function App() {
 
   useEffect(function () {
     async function fetchMovies() {
-      setIsLoading(true);
-      const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`)
-      const data = await res.json();
+      try {
+        setIsLoading(true);
+        const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
 
-      setMovies(data.Search)
-      // console.log('movies: ',movies );  // old value = []
-      // console.log('data.Search: ',data.Search );
-      setIsLoading(false);
+        // Handling Errors
+        if (!res.ok) throw new Error('Something went wrong with fetching movies');
+
+        const data = await res.json();
+
+        setMovies(data.Search)
+        // console.log('movies: ',movies );  // old value = []
+        // console.log('data.Search: ',data.Search );
+        setIsLoading(false);
+      } catch (err) {
+        console.log('error: ', err.message);
+      }
     }
 
     fetchMovies();
