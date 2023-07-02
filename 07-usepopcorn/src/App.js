@@ -70,6 +70,8 @@ export default function App() {
 
         const data = await res.json();
 
+        if (data.Response === 'False') throw new Error("Movie not found")
+
         setMovies(data.Search)
         // console.log('movies: ',movies );  // old value = []
         // console.log('data.Search: ',data.Search );
@@ -77,6 +79,8 @@ export default function App() {
       } catch (err) {
         console.log('error: ', err.message);
         setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -127,7 +131,7 @@ export default function App() {
             or there is an error
           */}
           { isLoading && <Loader />}
-          { isLoading && !error && <MovieList movies={movies} />}
+          { !isLoading && !error && <MovieList movies={movies} />}
           { error && <ErrorMessage message={error} />}
         </Box>
          
