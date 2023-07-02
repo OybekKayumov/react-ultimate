@@ -75,12 +75,13 @@ export default function App() {
 
   console.log('C: '); // 1
   */
- 
+
   useEffect(function () {
     async function fetchMovies() {
       try {
         setIsLoading(true);
-        const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${tempQuery}`);
+        setError('');
+        const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
 
         // Handling Errors
         if (!res.ok) throw new Error('Something went wrong with fetching movies');
@@ -102,7 +103,7 @@ export default function App() {
     }
 
     fetchMovies();
-  }, []) // dependency array 
+  }, [query]) // dependency array 
   //! Why it repeats twice in console.log:
   // React's strict mode effects will not run only once, but actually twice
   // React will call our effects twice but only in development.
