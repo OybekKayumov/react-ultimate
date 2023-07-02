@@ -102,6 +102,12 @@ export default function App() {
       }
     }
 
+    if (query.length < 3) {
+      setMovies([]);
+      setError('');
+      return;
+    }
+
     fetchMovies();
   }, [query]) // dependency array 
   //! Why it repeats twice in console.log:
