@@ -60,6 +60,22 @@ export default function App() {
   const [error, setError] = useState('');
   const tempQuery = 'interstellar';
 
+  /*
+  useEffect(() => {
+    console.log('A: '); // 2
+  }, [])
+  
+  useEffect(() => {
+    console.log('B: '); // 3
+  })
+  
+  useEffect(() => {
+    console.log('D: '); // 
+  }, [query])
+
+  console.log('C: '); // 1
+  */
+ 
   useEffect(function () {
     async function fetchMovies() {
       try {
