@@ -50,18 +50,38 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-const KEY = '';
-// const KEY = process.env.API_KEY;
+const KEY = process.env.REACT_APP_API_KEY;
 
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const query = 'interstellar';
 
   useEffect(function () {
+    async function fetchMovies() {
+      const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`)
+      const data = await res.json();
+
+      setMovies(data.Search)
+      console.log('movies: ',movies );  // old value = []
+      console.log('data.Search: ',data.Search );
+    }
+
+    fetchMovies();
+  }, []) // dependency array 
+  //! Why it repeats twice in console.log:
+  // React's strict mode effects will not run only once, but actually twice
+  // React will call our effects twice but only in development.
+  // when application is in production this will no longer be happening
+  // if remove <React.StrictMode> from index.js, the effect was only called once
+
+  /*
+  useEffect( function () {
     fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
     .then(res => res.json())
     .then(data => setMovies(data.Search))
   }, []) // dependency array 
+  */
   // [] -> will only run on mount,
   // it'll only run when App component renders for the very first time
   
