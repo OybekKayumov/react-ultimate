@@ -56,6 +56,7 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const query = 'interstellar';
 
   useEffect(function () {
@@ -75,6 +76,7 @@ export default function App() {
         setIsLoading(false);
       } catch (err) {
         console.log('error: ', err.message);
+        setError(err.message);
       }
     }
 
@@ -116,10 +118,17 @@ export default function App() {
       
       <Main>        
         <Box>
-          {isLoading 
+          {/* {isLoading 
             ? <Loader />
             : <MovieList movies={movies} />
-          }
+          } */}
+          {/* it is ether loading, 
+            or it is not loading and there is no error 
+            or there is an error
+          */}
+          { isLoading && <Loader />}
+          { isLoading && !error && <MovieList movies={movies} />}
+          { error && <ErrorMessage message={error} />}
         </Box>
          
         <Box>
@@ -134,6 +143,14 @@ export default function App() {
 function Loader() {
   return(
     <p className="loader">Loading...</p>
+  )
+}
+
+function ErrorMessage({ message }) {
+  return (
+    <p className="error">
+      <span>⛔</span> {message}
+    </p>
   )
 }
 
