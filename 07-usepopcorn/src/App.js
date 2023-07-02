@@ -55,16 +55,19 @@ const KEY = process.env.REACT_APP_API_KEY;
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const query = 'interstellar';
 
   useEffect(function () {
     async function fetchMovies() {
+      setIsLoading(true);
       const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`)
       const data = await res.json();
 
       setMovies(data.Search)
-      console.log('movies: ',movies );  // old value = []
-      console.log('data.Search: ',data.Search );
+      // console.log('movies: ',movies );  // old value = []
+      // console.log('data.Search: ',data.Search );
+      setIsLoading(false);
     }
 
     fetchMovies();
@@ -73,7 +76,7 @@ export default function App() {
   // React's strict mode effects will not run only once, but actually twice
   // React will call our effects twice but only in development.
   // when application is in production this will no longer be happening
-  // if remove <React.StrictMode> from index.js, the effect was only called once
+  // if remove <React.StrictMode> from index.js, the effect will only called once
 
   /*
   useEffect( function () {
@@ -105,7 +108,10 @@ export default function App() {
       
       <Main>        
         <Box>
-          <MovieList movies={movies} />
+          {isLoading 
+            ? <Loader />
+            : <MovieList movies={movies} />
+          }
         </Box>
          
         <Box>
@@ -115,6 +121,12 @@ export default function App() {
       </Main>
     </>
   );
+}
+
+function Loader() {
+  return(
+    <p className="loader">Loading...</p>
+  )
 }
 
 // function NavBar({ movies }) {
