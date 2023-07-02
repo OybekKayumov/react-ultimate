@@ -51,6 +51,7 @@ const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
 const KEY = '';
+// const KEY = process.env.API_KEY;
 
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -59,7 +60,7 @@ export default function App() {
   useEffect(function () {
     fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
     .then(res => res.json())
-    .then(data => console.log('data: ',data))
+    .then(data => setMovies(data.Search))
   }, []) // dependency array 
   // [] -> will only run on mount,
   // it'll only run when App component renders for the very first time
