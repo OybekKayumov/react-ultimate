@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const tempMovieData = [
   {
@@ -50,18 +50,29 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-const KEY = 'key'
+const KEY = '';
 
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
-  
-  fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
+
+  useEffect(function () {
+    fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
     .then(res => res.json())
     .then(data => console.log('data: ',data))
-    // .then(data => setMovies(data.Search))  //! too many renders
+  }, []) // dependency array 
+  // [] -> will only run on mount,
+  // it'll only run when App component renders for the very first time
   
+  // -----------------
+  //! creates infinite requests to API
+  // fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
+    // .then(res => res.json())
+    // .then(data => console.log('data: ',data))
+
+    // .then(data => setMovies(data.Search))  //! too many renders  
   // setWatched([]);  //! too many renders
+  // -----------------
 
   return (
     <>
