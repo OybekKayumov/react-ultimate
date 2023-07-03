@@ -389,6 +389,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     // Cleaning Up the Title
     return function () {
       document.title = 'usePopcorn'
+      console.log(`Cleaning Up the Title: ', ${title}`); //! remembers title
+      // closure - means that a function will always remember all the variables that were present at the time and the place data function was created
     }
   // }, [])     // on first mount, undefined
   }, [title])   // on change tittle this effect is executed again 
