@@ -54,7 +54,7 @@ const average = (arr) =>
 const KEY = process.env.REACT_APP_API_KEY;
 
 export default function App() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("inception");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -84,6 +84,10 @@ export default function App() {
 
   function handleCloseMovie() {
     setSelectedId(null);
+  }
+
+  function handleAddWatched(movie) {
+    setWatched(watched => [...watched, movie])
   }
 
   useEffect(function () {
@@ -179,6 +183,7 @@ export default function App() {
               <MovieDetails 
                 selectedId={selectedId} 
                 onCloseMovie={handleCloseMovie}
+                onAddWatched={handleAddWatched}
               />
             ) : ( 
               <>
