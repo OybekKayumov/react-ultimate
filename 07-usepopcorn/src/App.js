@@ -382,8 +382,16 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   }, [selectedId]);
 
   useEffect(() => {
-    document.title = 'TEst'
-  }, [])  // on mount
+    if (!title) return;
+
+    document.title = `Movie | ${title}`;
+
+    // Cleaning Up the Title
+    return function () {
+      document.title = 'usePopcorn'
+    }
+  // }, [])     // on first mount, undefined
+  }, [title])   // on change tittle this effect is executed again 
   
 
   return (
