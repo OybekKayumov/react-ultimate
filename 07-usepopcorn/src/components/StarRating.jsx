@@ -127,7 +127,7 @@ StarRating.propTypes = {
   onSetRating: PropTypes.func,
 }
 
-export default StarRating
+export default StarRating;
 
 // create empty array with 5 elements 
 // we not interested in the elements themselves
