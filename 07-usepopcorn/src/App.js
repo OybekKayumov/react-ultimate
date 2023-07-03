@@ -54,7 +54,7 @@ const average = (arr) =>
 const KEY = process.env.REACT_APP_API_KEY;
 
 export default function App() {
-  const [query, setQuery] = useState("inception");
+  const [query, setQuery] = useState("interstellar");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -184,6 +184,7 @@ export default function App() {
                 selectedId={selectedId} 
                 onCloseMovie={handleCloseMovie}
                 onAddWatched={handleAddWatched}
+                watched={watched}
               />
             ) : ( 
               <>
@@ -316,10 +317,13 @@ function Movie({ movie, onSelectMovie }) {
   )
 }
 
-function MovieDetails({ selectedId, onCloseMovie, onAddWatched }) {
+function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState(false);
+
+  const isWatched = watched.map(movie => movie.imdbID).includes(selectedId);
+  // console.log(': ', isWatched);
 
   // destructure new movie object
   const {
