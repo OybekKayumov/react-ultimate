@@ -379,7 +379,12 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     }
 
     getMoviesDetails();
-  }, [selectedId])
+  }, [selectedId]);
+
+  useEffect(() => {
+    document.title = 'TEst'
+  }, [])  // on mount
+  
 
   return (
     <div className="details">
