@@ -78,7 +78,7 @@ export default function App() {
   */
 
   function handleSelectMovie(id) {
-    setSelectedId(id);
+    setSelectedId(selectedId => id === selectedId ? null : id);
   }
 
   function handleCloseMovie() {
@@ -311,6 +311,18 @@ function Movie({ movie, onSelectMovie }) {
 }
 
 function MovieDetails({ selectedId, onCloseMovie }) {
+  useEffect(() => {
+    async function getMoviesDetails() {
+      const res = await fetch(
+        `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+      );
+      const data = await res.json();
+      console.log('data: ', data);
+    }
+
+    getMoviesDetails();
+  }, [])
+
   return (
     <div className="details">
       <button 
@@ -319,7 +331,7 @@ function MovieDetails({ selectedId, onCloseMovie }) {
       >
         &larr;
       </button>
-      
+
       {selectedId}
     </div>
   )
