@@ -94,6 +94,17 @@ export default function App() {
     setWatched(watched => watched.filter(movie => movie.imdbID !== id));
   }
 
+  // quit by esc
+  useEffect(() => {
+    document.addEventListener('keydown', function (e) {
+      if (e.code === 'Escape') {
+        handleCloseMovie();
+        console.log('Closing...');
+      }
+    })
+  }, [])
+  
+
   useEffect(function () {
     // abort controller - to make 1 request while typing - browser API
     const controller = new AbortController() 
