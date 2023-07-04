@@ -9,14 +9,24 @@ function App() {
 
   return (
     <div>
-      <input type="text" />
-      <select>
+      <input 
+        type="text" 
+        value={amount}
+        onChange={(e) => setAmount(Number(e.target.value))}
+      />
+      <select 
+        value={fromCurrency}
+        onChange={e => setFromCurrency(e.target.validationMessage)}
+      >
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
         <option value="CAD">CAD</option>
         <option value="INR">INR</option>
       </select>
-      <select>
+      <select
+        value={toCurrency}
+        onChange={e => setToCurrency(e.target.validationMessage)}
+      >
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
         <option value="CAD">CAD</option>
