@@ -95,11 +95,17 @@ export default function App() {
   }
 
   useEffect(function () {
+    // abort controller - to make 1 request while typing - browser API
+    const controller = new AbortController() 
+
     async function fetchMovies() {
       try {
         setIsLoading(true);
         setError('');
-        const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+          {signal: controller.signal}
+        );
 
         // Handling Errors
         if (!res.ok) throw new Error('Something went wrong with fetching movies');
