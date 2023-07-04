@@ -21,7 +21,8 @@ function App() {
     }
 
     convert();
-  }, [])  // on mount
+  // }, [])  // on mount
+  }, [amount, toCurrency, fromCurrency])  // on change
 
   return (
     <div>
