@@ -272,8 +272,16 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   // The Rules of Hooks in Practice
   /* eslint-disable */
   // if (imdbRating > 8 ) [isTop, setIsTop] = useState(true);
-
+  
   // if (imdbRating > 8) return <p>Greatest ever!</p>
+  
+  // More Details of useState
+  const [isTop, setIsTop] = useState(imdbRating > 8 ); // undefined --> false
+  console.log(': ', isTop ); 
+
+  useEffect(function () {
+    setIsTop(imdbRating > 8);
+  }, [imdbRating])  // true
 
   function handleAdd() {
     const newWatchedMovie = {
