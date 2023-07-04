@@ -305,7 +305,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
     setAvgRating(Number(imdbRating));
     // alert(avgRating);
-    setAvgRating((avgRating + userRating) / 2)
+    setAvgRating((avgRating) => (avgRating + userRating) / 2)
   }
 
    // quit movie by esc
