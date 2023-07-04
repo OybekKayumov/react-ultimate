@@ -120,10 +120,10 @@ export default function App() {
         // console.log('data.Search: ',data.Search );
         // setIsLoading(false);
       } catch (err) {
-        console.log('error: ', err.message);
-
+        
         // ignore abort-error
         if (err.name !== "AbortError") {
+          console.log('error: ', err.message);
           setError(err.message);
         }
 
@@ -138,6 +138,9 @@ export default function App() {
       setError('');
       return;
     }
+
+    // close movie before new search-fetch
+    handleCloseMovie();
 
     fetchMovies();
 
@@ -386,13 +389,19 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
    // quit movie by esc
    useEffect(() => {
-    document.addEventListener('keydown', function (e) {
+    function callback(e) {
       if (e.code === 'Escape') {
         // handleCloseMovie();
         onCloseMovie();
         console.log('Closing...');
       }
-    })
+    };
+
+    document.addEventListener('keydown', callback)
+
+    return function () {
+      document.removeEventListener('keydown', callback)
+    }
   }, [onCloseMovie])
 
   useEffect(() => {
