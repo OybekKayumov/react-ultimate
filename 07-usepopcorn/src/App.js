@@ -298,13 +298,17 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [userRating, setUserRating] = useState('');
 
   // how many times user rated movie before add to watched list
+  // it counts clicks before last rating, which may be a lot
   const countRef = useRef(0);  // 1 create ref
+  let count = 0;  // resets after every re-render, always going back to 0,
+  // when last click happened, that 0 increase to 1 and that count was added to the object 
 
   useEffect(function () {     // 3  use ref
     // if (userRating) countRef.current = countRef.current + 1;
     // if (userRating) countRef.current += 1;
     if (userRating) countRef.current++;
-  }, [userRating])
+    if (userRating) count++; 
+  }, [userRating, count])
 
   const isWatched = watched.map(movie => movie.imdbID).includes(selectedId);
   
@@ -357,6 +361,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       runtime: Number(runtime.split(' ').at(0)),
       userRating,
       countRatingDecisions: countRef.current,  // 2 - select 
+      count,
     }
 
     onAddWatched(newWatchedMovie);
