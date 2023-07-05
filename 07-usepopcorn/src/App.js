@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "./components/StarRating";
 
 const average = (arr) =>
@@ -180,12 +180,22 @@ function Logo() {
 function Search({ query, setQuery }) {
   // const [query, setQuery] = useState("");
 
-  // focus on input-search
+  // focus on input-search --> imperative
+  // useEffect(function () {
+  //   const el = document.querySelector('.search');
+  //   console.log('el: ', el);
+  //   el.focus();
+  // }, [])
+
+  // focus using ref - 3 steps
+  // 1 create ref and pass initial value
+  const inputEl = useRef(null);
+
+  // 3 
   useEffect(function () {
-    const el = document.querySelector('.search');
-    console.log('el: ', el);
-    el.focus();
-  }, [])
+    console.log(': ', inputEl.current);
+    inputEl.current.focus();
+  }, []);
 
   return (
     <input
@@ -194,6 +204,8 @@ function Search({ query, setQuery }) {
       placeholder="Search movies..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      // 2 come to the element that we want to select
+      ref={inputEl} 
     />
   )
 }
