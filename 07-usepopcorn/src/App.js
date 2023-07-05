@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import StarRating from "./components/StarRating";
 import useMovies from "./custom-hooks/useMovies";
 import useLocalStorageState from "./custom-hooks/useLocalStorageState";
+import useKey from "./custom-hooks/useKey";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -382,21 +383,22 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   }
 
    // quit movie by esc
-   useEffect(() => {
-    function callback(e) {
-      if (e.code === 'Escape') {
-        // handleCloseMovie();
-        onCloseMovie();
-        console.log('Closing...');
-      }
-    };
+  //  useEffect(() => {
+  //   function callback(e) {
+  //     if (e.code === 'Escape') {
+  //       // handleCloseMovie();
+  //       onCloseMovie();
+  //       console.log('Closing...');
+  //     }
+  //   };
 
-    document.addEventListener('keydown', callback)
+  //   document.addEventListener('keydown', callback)
 
-    return function () {
-      document.removeEventListener('keydown', callback)
-    }
-  }, [onCloseMovie])
+  //   return function () {
+  //     document.removeEventListener('keydown', callback)
+  //   }
+  // }, [onCloseMovie])
+  useKey('Escape', onCloseMovie) // onCloseMovie --> action
 
   useEffect(() => {
     async function getMoviesDetails() {
