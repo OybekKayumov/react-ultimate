@@ -201,7 +201,15 @@ function Search({ query, setQuery }) {
   // 1 create ref and pass initial value
   const inputEl = useRef(null);
 
+  useKey('Enter', function name() {  // custom hook
+    if (document.activeElement === inputEl.current) return;
+  
+    inputEl.current.focus();
+    setQuery('');
+  })
+
   // 3 
+  /*
   useEffect(function () {
 
     // press "Enter" key to focus
@@ -220,7 +228,7 @@ function Search({ query, setQuery }) {
     // console.log(': ', inputEl.current);
     // inputEl.current.focus();
   }, [setQuery]);
-
+  */
   return (
     <input
       className="search"
