@@ -10,7 +10,8 @@ export default function App() {
   const [query, setQuery] = useState("interstellar");
   const [movies, setMovies] = useState([]);
   // const [watched, setWatched] = useState([]);
-  const [watched, setWatched] = useState(function () { // passing callback fn
+  const [watched, setWatched] = useState(function () { 
+    // passing callback fn, this process is called lazy evaluation
     const storedValue = localStorage.getItem('watched');
 
     return JSON.parse(storedValue);
@@ -178,6 +179,13 @@ function Logo() {
 
 function Search({ query, setQuery }) {
   // const [query, setQuery] = useState("");
+
+  // focus on input-search
+  useEffect(function () {
+    const el = document.querySelector('.search');
+    console.log('el: ', el);
+    el.focus();
+  }, [])
 
   return (
     <input
