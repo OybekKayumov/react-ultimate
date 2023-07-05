@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 const KEY = process.env.REACT_APP_API_KEY;
 
-const useMovies = (query) => {
+const useMovies = (query, callback) => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(function () {
+    // optional chaining - call if callback-fn is exist --> handleCloseMovie
+    callback?.(); 
+    
     // abort controller - to make 1 request while typing - browser API
     const controller = new AbortController() 
 

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import StarRating from "./components/StarRating";
 import useMovies from "./custom-hooks/useMovies";
+import useLocalStorageState from "./custom-hooks/useLocalStorageState";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -15,15 +16,17 @@ export default function App() {
 
   const [query, setQuery] = useState("interstellar");
   const [selectedId, setSelectedId] = useState(null)
-  const [watched, setWatched] = useState(function () { 
-    // passing callback fn, this process is called lazy evaluation
-    const storedValue = localStorage.getItem('watched');
+  // const [watched, setWatched] = useState(function () { 
+  //   // passing callback fn, this process is called lazy evaluation
+  //   const storedValue = localStorage.getItem('watched');
 
-    return JSON.parse(storedValue);
-  });
+  //   return JSON.parse(storedValue);
+  // });
   // useState(localStorage.getItem("watched")); // ! never do this, instead pass in a function that React can than call later 
 
-  const {movies, isLoading, error} = useMovies(query);
+  const {movies, isLoading, error} = useMovies(query, handleCloseMovie);
+  const [watched, setWatched] = useLocalStorageState([], "watched") 
+  // "watched" -> key
 
   function handleSelectMovie(id) {
     setSelectedId(selectedId => id === selectedId ? null : id);
@@ -45,9 +48,9 @@ export default function App() {
   }
 
   // localStorage with useEffect
-  useEffect(function () {
-    localStorage.setItem("watched", JSON.stringify(watched))
-  }, [watched])  // to run this effect each time when watched movies updated
+  // useEffect(function () {
+  //   localStorage.setItem("watched", JSON.stringify(watched))
+  // }, [watched])  // to run this effect each time when watched movies updated
   // delete movie also works
 
   /*
