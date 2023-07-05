@@ -5,7 +5,7 @@ const useLocalStorageState = (initialState, key) => {
     // passing callback fn, this process is called lazy evaluation
     const storedValue = localStorage.getItem(key);
 
-    return JSON.parse(storedValue);
+    return storedValue ? JSON.parse(storedValue) : initialState;
   });
 
   useEffect(function () {

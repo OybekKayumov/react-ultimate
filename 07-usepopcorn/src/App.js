@@ -25,7 +25,7 @@ export default function App() {
   // useState(localStorage.getItem("watched")); // ! never do this, instead pass in a function that React can than call later 
 
   const {movies, isLoading, error} = useMovies(query, handleCloseMovie);
-  const [watched, setWatched] = useLocalStorageState([], "watched") 
+  const [watched, setWatched] = useLocalStorageState([], "watched");
   // "watched" -> key
 
   function handleSelectMovie(id) {
