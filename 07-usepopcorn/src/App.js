@@ -297,6 +297,15 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState('');
 
+  // how many times user rated movie before add to watched list
+  const countRef = useRef(0);  // 1 create ref
+
+  useEffect(function () {     // 3  use ref
+    // if (userRating) countRef.current = countRef.current + 1;
+    // if (userRating) countRef.current += 1;
+    if (userRating) countRef.current++;
+  }, [userRating])
+
   const isWatched = watched.map(movie => movie.imdbID).includes(selectedId);
   
   // optional chaining, if returns nothing in the movie list --> selectedId)?.
@@ -346,7 +355,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       poster,
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(' ').at(0)),
-      userRating
+      userRating,
+      countRatingDecisions: countRef.current,  // 2 - select 
     }
 
     onAddWatched(newWatchedMovie);
