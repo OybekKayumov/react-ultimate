@@ -10,11 +10,12 @@ export default function App() {
   const [query, setQuery] = useState("interstellar");
   const [movies, setMovies] = useState([]);
   // const [watched, setWatched] = useState([]);
-  const [watched, setWatched] = useState(function () {
+  const [watched, setWatched] = useState(function () { // passing callback fn
     const storedValue = localStorage.getItem('watched');
 
     return JSON.parse(storedValue);
   });
+  // useState(localStorage.getItem("watched")); // ! never do this, instead pass in a function that React can than call later 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [selectedId, setSelectedId] = useState(null)
@@ -42,6 +43,7 @@ export default function App() {
   useEffect(function () {
     localStorage.setItem("watched", JSON.stringify(watched))
   }, [watched])  // to run this effect each time when watched movies updated
+  // delete movie also works
 
   useEffect(function () {
     // abort controller - to make 1 request while typing - browser API
