@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import StarRating from "./components/StarRating";
+import useMovies from "./custom-hooks/useMovies";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -7,9 +8,13 @@ const average = (arr) =>
 const KEY = process.env.REACT_APP_API_KEY;
 
 export default function App() {
-  const [query, setQuery] = useState("interstellar");
-  const [movies, setMovies] = useState([]);
+  // const [movies, setMovies] = useState([]);
   // const [watched, setWatched] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState('');
+
+  const [query, setQuery] = useState("interstellar");
+  const [selectedId, setSelectedId] = useState(null)
   const [watched, setWatched] = useState(function () { 
     // passing callback fn, this process is called lazy evaluation
     const storedValue = localStorage.getItem('watched');
@@ -17,10 +22,9 @@ export default function App() {
     return JSON.parse(storedValue);
   });
   // useState(localStorage.getItem("watched")); // ! never do this, instead pass in a function that React can than call later 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [selectedId, setSelectedId] = useState(null)
-  
+
+  const {movies, isLoading, error} = useMovies(query);
+
   function handleSelectMovie(id) {
     setSelectedId(selectedId => id === selectedId ? null : id);
   }
@@ -46,6 +50,7 @@ export default function App() {
   }, [watched])  // to run this effect each time when watched movies updated
   // delete movie also works
 
+  /*
   useEffect(function () {
     // abort controller - to make 1 request while typing - browser API
     const controller = new AbortController() 
@@ -99,7 +104,8 @@ export default function App() {
       controller.abort();
     }
   }, [query]) // dependency array 
-  
+  */
+
   return (
     <>
       <NavBar>
