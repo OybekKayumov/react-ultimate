@@ -26,12 +26,17 @@ export default function App() {
     setWatched(watched => [...watched, movie])
 
     // localStorage
-    localStorage.setItem('watched', JSON.stringify([...watched, movie]));
+    // localStorage.setItem('watched', JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id) {
     setWatched(watched => watched.filter(movie => movie.imdbID !== id));
   }
+
+  // localStorage with useEffect
+  useEffect(function () {
+    localStorage.setItem("watched", JSON.stringify(watched))
+  }, [watched])  // to run this effect each time when watched movies updated
 
   useEffect(function () {
     // abort controller - to make 1 request while typing - browser API
