@@ -193,9 +193,23 @@ function Search({ query, setQuery }) {
 
   // 3 
   useEffect(function () {
-    console.log(': ', inputEl.current);
-    inputEl.current.focus();
-  }, []);
+
+    // press "Enter" key to focus
+    function callback(e) {
+      if (document.activeElement === inputEl.current) return;
+
+      if (e.code === "Enter") {
+      inputEl.current.focus();
+      setQuery('');
+      }
+    }
+
+    document.addEventListener('keydown', callback);
+    return () => document.addEventListener('keydown', callback);
+
+    // console.log(': ', inputEl.current);
+    // inputEl.current.focus();
+  }, [setQuery]);
 
   return (
     <input
