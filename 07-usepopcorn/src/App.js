@@ -24,6 +24,9 @@ export default function App() {
 
   function handleAddWatched(movie) {
     setWatched(watched => [...watched, movie])
+
+    // localStorage
+    localStorage.setItem('watched', JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id) {
@@ -287,7 +290,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const isTop = imdbRating > 8;
   console.log('isTop: ', isTop);
 
-  const [avgRating, setAvgRating] = useState(0);
+  // const [avgRating, setAvgRating] = useState(0);
 
   function handleAdd() {
     const newWatchedMovie = {
@@ -301,11 +304,11 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     }
 
     onAddWatched(newWatchedMovie);
-    // onCloseMovie();
+    onCloseMovie();
 
-    setAvgRating(Number(imdbRating));
+    // setAvgRating(Number(imdbRating));
     // alert(avgRating);
-    setAvgRating((avgRating) => (avgRating + userRating) / 2)
+    // setAvgRating((avgRating) => (avgRating + userRating) / 2)
   }
 
    // quit movie by esc
@@ -377,7 +380,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
             </div>
           </header>
 
-          <h2>{avgRating}</h2>
+          {/* <h2>{avgRating}</h2> */}
 
           <section>
             <div className="rating">
