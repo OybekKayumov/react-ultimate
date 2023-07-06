@@ -39,11 +39,11 @@ class App extends React.Component {
     displayLocation: '',
     weather: {},
   };
-  
-  constructor(props) {
-    super(props);
+
+  // constructor(props) {
+    // super(props);
     // this.fetchWeather = this.fetchWeather.bind(this);
-  }
+  // }
   
   // async fetchWeather() {
   fetchWeather = async () => {
@@ -86,14 +86,15 @@ class App extends React.Component {
     return (
       <div className='app'>
         <h1>Classy Weather</h1>
-        <div>
+        {/* <div>
           <input 
             type="text" 
             placeholder='Search from location...'
             value={this.state.location}
             onChange={e => this.setState({location: e.target.value})}
           />
-        </div>
+        </div> */}
+        <Input />
         
         <button
           onClick={this.fetchWeather}
@@ -112,6 +113,21 @@ class App extends React.Component {
             weather={this.state.weather}
             location={this.state.displayLocation}
         />)}
+      </div>
+    )
+  }
+}
+
+class Input extends React.Component {
+  render() {
+    return (
+      <div>
+        <input 
+          type="text" 
+          placeholder='Search from location...'
+          value={this.state.location}
+          onChange={e => this.setState({location: e.target.value})}
+        />
       </div>
     )
   }
