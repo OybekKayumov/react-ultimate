@@ -108,7 +108,7 @@ class App extends React.Component {
         {this.state.weather.weathercode && (
           <Weather 
             weather={this.state.weather}
-            location={this.state.location}
+            location={this.state.displayLocation}
         />)}
       </div>
     )
@@ -117,13 +117,47 @@ class App extends React.Component {
 
 class Weather extends React.Component {
   render() {
+    console.log('this.props: ', this.props);
+    const {
+      temperature_2m_max: max,
+      temperature_2m_min: min,
+      time: dates,
+      weathercode: codes
+    } = this.props.weather
+
     return (
       <div>
-        <h2>Weather</h2>
+        <h2>Weather for {this.props.location}</h2>
+        <ul className='weather'>
+          {dates.map((date, i) => (
+            <Day 
+              date={date}
+              max={max.at(i)}
+              min={min.at(i)}
+              code={codes.at(i)}
+              key={date}
+            />
+          ))}
+        </ul>
       </div>
     )
   }
 }
 
+class Day extends React.Component {
+  render() {
+    const {date, max, min, code} = this.props;
+    
+    return (
+      <li className='day'>
+        <span>{getWeatherIcon(code)}</span>
+        <p>{formatDay(date)}</p>
+        <p>
+          {min}&deg; &mdash; <strong>{max}&deg;</strong>
+        </p>
+      </li>
+    )
+  }
+}
 
 export default App;
