@@ -1,19 +1,14 @@
 
 import { useState } from "react";
 
-function useGeolocation() {}
-
-export default function App() {
-  const [countClicks, setCountClicks] = useState(0);
-  const { lat, lng } = position;
+function useGeolocation() {
   const [isLoading, setIsLoading] = useState(false);
   const [position, setPosition] = useState({});
   const [error, setError] = useState(null);
 
 
   function getPosition() {
-    setCountClicks((count) => count + 1);
-
+    
     if (!navigator.geolocation)
       return setError("Your browser does not support geolocation");
 
@@ -33,9 +28,28 @@ export default function App() {
     );
   }
 
+  return { isLoading, position, error, getPosition }
+}
+
+export default function App() {
+  // nested destructuring --> position: {lat, lng}
+  const {
+    isLoading,
+    position: {lat, lng},
+    error, getPosition 
+  } = useGeolocation();
+
+  const [countClicks, setCountClicks] = useState(0);
+  // const { lat, lng } = position;
+  
+  function handleClick() {
+    setCountClicks((count) => count + 1);
+    getPosition();
+  }
+
   return (
     <div>
-      <button onClick={getPosition} disabled={isLoading}>
+      <button onClick={handleClick} disabled={isLoading}>
         Get my position
       </button>
 
