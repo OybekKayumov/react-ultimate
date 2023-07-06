@@ -39,12 +39,14 @@ class App extends React.Component {
     displayLocation: '',
     weather: {},
   };
+  
   constructor(props) {
     super(props);
-    this.fetchWeather = this.fetchWeather.bind(this);
+    // this.fetchWeather = this.fetchWeather.bind(this);
   }
   
-  async fetchWeather() {
+  // async fetchWeather() {
+  fetchWeather = async () => {
     // console.log('Loading data...');
     // console.log('this: ', this);
 
