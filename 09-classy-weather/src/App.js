@@ -104,9 +104,26 @@ class App extends React.Component {
             Loading...
           </p> 
         }
+
+        {this.state.weather.weathercode && (
+          <Weather 
+            weather={this.state.weather}
+            location={this.state.location}
+        />)}
       </div>
     )
   }
 }
+
+class Weather extends React.Component {
+  render() {
+    return (
+      <div>
+        <h2>Weather</h2>
+      </div>
+    )
+  }
+}
+
 
 export default App;
