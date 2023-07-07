@@ -51,7 +51,8 @@ class App extends React.Component {
     // console.log('Loading data...');
     // console.log('this: ', this);
 
-    if (this.state.location.length < 2) return;
+    // not only return, but also set the state to empty weather again
+    if (this.state.location.length < 2) return this.setState({ weather: {} });
 
     try {
       this.setState({ isLoading: true })  // update state
@@ -106,7 +107,7 @@ class App extends React.Component {
       localStorage.setItem('location', this.state.location); // already a string
     }
   }
-
+  
   render() {
     return (
       <div className='app'>
@@ -164,6 +165,12 @@ class Input extends React.Component {
 }
 
 class Weather extends React.Component {
+  // similar to returning a cleanup function from a effect function
+  // The difference is that this one really only runs after the component unmounts, so after it disappears and is destroyed, not between renders.
+  componentWillUnmount() {
+    console.log('weather will unmount...');
+  }
+
   render() {
     console.log('this.props: ', this.props);
     const {
