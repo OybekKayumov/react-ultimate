@@ -34,7 +34,8 @@ function formatDay(dateStr) {
 
 class App extends React.Component {
   state = {
-    location: 'lisbon',
+    // location: 'lisbon',
+    location: '',
     isLoading: false,
     displayLocation: '',
     weather: {},
@@ -49,6 +50,8 @@ class App extends React.Component {
   fetchWeather = async () => {
     // console.log('Loading data...');
     // console.log('this: ', this);
+
+    if (this.state.location.length < 2) return;
 
     try {
       this.setState({ isLoading: true })  // update state
@@ -76,7 +79,7 @@ class App extends React.Component {
       console.log(weatherData.daily);
       this.setState({ weather:  weatherData.daily });
     } catch (err) {
-      console.err(err);
+      console.error(err);
     } finally {
       this.setState({ isLoading: false })
     }
@@ -88,7 +91,7 @@ class App extends React.Component {
   // like a use effect hook with the empty dependency array  
   componentDidMount() {
     // as soon as the app is loaded it'll immediately start fetching for the weather
-    this.fetchWeather();
+    // this.fetchWeather();
   }
 
   // React gives it access to the previous state and the previous props
@@ -97,6 +100,8 @@ class App extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.state.location !== prevState.location) {
       this.fetchWeather();
+
+      localStorage.setItem('location', this.state.location); // already a string
     }
   }
 
