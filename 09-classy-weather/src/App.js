@@ -82,7 +82,23 @@ class App extends React.Component {
     }
   }
 
-  setLocation = e => this.setState({location: e.target.value})
+  setLocation = e => this.setState({location: e.target.value});
+
+  // called immediately after rendering, after the dom has been created
+  // like a use effect hook with the empty dependency array  
+  componentDidMount() {
+    // as soon as the app is loaded it'll immediately start fetching for the weather
+    this.fetchWeather();
+  }
+
+  // React gives it access to the previous state and the previous props
+  // useEffect[location]
+  // search as we type
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.location !== prevState.location) {
+      this.fetchWeather();
+    }
+  }
 
   render() {
     return (
