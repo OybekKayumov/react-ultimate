@@ -92,6 +92,8 @@ class App extends React.Component {
   componentDidMount() {
     // as soon as the app is loaded it'll immediately start fetching for the weather
     // this.fetchWeather();
+
+    this.setState({location: localStorage.getItem('location') || "" });
   }
 
   // React gives it access to the previous state and the previous props
