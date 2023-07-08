@@ -12,6 +12,9 @@ const initialState = {
 
   // states: loading, error, ready, active, finished
   status: 'loading',
+
+  // display question, it needs to re-render the screen once it is updated
+  index: 0, 
 };
 
 function reducer(state, action) {
@@ -40,8 +43,8 @@ function reducer(state, action) {
 function App() {
   // reducer
   // const [state, dispatch] = useReducer(reducer, initialState);
-  // nested destructuring
-  const [{questions, status}, dispatch] = useReducer(reducer, initialState);
+  // state nested destructuring
+  const [{questions, status, index}, dispatch] = useReducer(reducer, initialState);
 
   // calculate derived state
   const numQuestions = questions.length;
@@ -74,7 +77,7 @@ function App() {
           />
         )}
         
-        {status === 'active' && <Question />}
+        {status === 'active' && <Question question={questions[index]} />}
       </Main>
     </div>
   );
