@@ -16,6 +16,7 @@ const initialState = {
   // display question, it needs to re-render the screen once it is updated
   index: 0,
   answer: null, // no answer
+  points: 0,
 };
 
 function reducer(state, action) {
@@ -37,9 +38,15 @@ function reducer(state, action) {
         status: 'error'
       };
     case 'newAnswer': 
+      // correct answer
+      const question = state.questions.at(state.index);
     return {
+
       ...state,
       answer: action.payload,
+      points: action.payload === question.correctOption 
+        ? state.points + question.points  // if answer is correct add points
+        : state.points,     // answer is wrong - no changes
     }
     default:
       throw new Error("Action Unknown");
