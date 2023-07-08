@@ -17,10 +17,14 @@ function reducer(state, action) {
         ...state, // all current state
         questions: action.payload, // set questions to the data we received
         status: 'ready'
-      }
-      
+      };
+    case 'dataFailed':
+      return {
+        ...state,
+        status: 'error'
+      };
     default:
-      break;
+      throw new Error("Action Unknown");
   }
 }
 
@@ -34,7 +38,8 @@ function App() {
       .then(res => res.json())  // response we need to convert to json
       // .then(data => console.log(': ', data))
       .then(data => dispatch({type: 'dataReceived', payload: data}))
-      .catch(err => console.error('Error'))
+      // .catch(err => console.error('Error'))
+      .catch(err => dispatch({ type: 'dataFailed' }));
   }, [])
 
   return (
