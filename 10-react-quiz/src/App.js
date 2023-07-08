@@ -22,6 +22,11 @@ function reducer(state, action) {
         questions: action.payload, // set questions to the data we received
         status: 'ready'
       };
+    case 'start':
+      return {
+        ...state,
+        status: 'active'
+      };
     case 'dataFailed':
       return {
         ...state,
@@ -61,7 +66,14 @@ function App() {
       <Main className="main">
         {status === 'loading' && <Loader />}
         {status === 'error' && <Error />}
-        {status === 'ready' && <StartScreen numQuestions={numQuestions} />}
+
+        {status === 'ready' && (
+          <StartScreen 
+            numQuestions={numQuestions} 
+            dispatch={dispatch}
+          />
+        )}
+        
         {status === 'active' && <Question />}
       </Main>
     </div>
