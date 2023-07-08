@@ -2,6 +2,9 @@
 import { useEffect, useReducer } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import Loader from "./components/Loader";
+import Error from "./components/Error";
+import StartScreen from "./components/StartScreen";
 
 const initialState = {
   questions: [],
@@ -30,10 +33,17 @@ function reducer(state, action) {
 
 function App() {
   // reducer
-  const [state, dispatch] = useReducer(reducer, initialState)
+  // const [state, dispatch] = useReducer(reducer, initialState);
+  // nested destructuring
+  const [{questions, status}, dispatch] = useReducer(reducer, initialState);
+
+  // calculate derived state
+  const numQuestions = questions.length;
+
+
 
   // fetch data from questions.json
-  useEffect(function (params) {
+  useEffect(function () {
     fetch('http://localhost:8000/questions')
       .then(res => res.json())  // response we need to convert to json
       // .then(data => console.log(': ', data))
@@ -48,8 +58,9 @@ function App() {
       <Header />
 
       <Main className="main">
-        <p>1/15</p>
-        <p>Question?</p>
+        {status === 'loading' && <Loader />}
+        {status === 'error' && <Error />}
+        {status === 'ready' && <StartScreen numQuestions={numQuestions} />}
       </Main>
     </div>
   );
