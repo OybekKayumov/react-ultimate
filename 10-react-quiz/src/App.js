@@ -14,7 +14,8 @@ const initialState = {
   status: 'loading',
 
   // display question, it needs to re-render the screen once it is updated
-  index: 0, 
+  index: 0,
+  answer: null, // no answer
 };
 
 function reducer(state, action) {
@@ -35,6 +36,11 @@ function reducer(state, action) {
         ...state,
         status: 'error'
       };
+    case 'newAnswer': 
+    return {
+      ...state,
+      answer: action.payload,
+    }
     default:
       throw new Error("Action Unknown");
   }
@@ -44,7 +50,7 @@ function App() {
   // reducer
   // const [state, dispatch] = useReducer(reducer, initialState);
   // state nested destructuring
-  const [{questions, status, index}, dispatch] = useReducer(reducer, initialState);
+  const [{questions, status, index, answer}, dispatch] = useReducer(reducer, initialState);
 
   // calculate derived state
   const numQuestions = questions.length;
@@ -77,7 +83,12 @@ function App() {
           />
         )}
         
-        {status === 'active' && <Question question={questions[index]} />}
+        {status === 'active' && (
+          <Question 
+            question={questions[index]}
+            dispatch={dispatch}
+            answer={answer}
+          />)}
       </Main>
     </div>
   );
