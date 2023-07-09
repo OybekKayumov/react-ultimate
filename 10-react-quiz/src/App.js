@@ -20,6 +20,7 @@ const initialState = {
   index: 0,
   answer: null, // no answer
   points: 0,
+  highscore: 0,
 };
 
 function reducer(state, action) {
@@ -61,6 +62,10 @@ function reducer(state, action) {
       return {
         ...state,
         status: 'finished',
+        highscore:
+          state.points > state.highscore 
+            ? state.points
+            : state.highscore,
       }
     default:
       throw new Error("Action Unknown");
@@ -77,7 +82,8 @@ function App() {
       status,
       index,
       answer,
-      points
+      points,
+      highscore,
     }, dispatch] = useReducer(reducer, initialState);
 
   // calculate derived state
@@ -139,6 +145,7 @@ function App() {
           <FinishScreen 
             points={points}
             maxPossiblePoints={maxPossiblePoints}
+            highscore={highscore}
           />
         )}
       </Main>
