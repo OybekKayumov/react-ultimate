@@ -52,7 +52,8 @@ function reducer(state, action) {
     case 'nextQuestion':
       return {
         ...state,
-        index: state.index +1
+        index: state.index +1,
+        answer: null,
       }
     default:
       throw new Error("Action Unknown");
