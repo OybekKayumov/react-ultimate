@@ -7,6 +7,7 @@ import Error from "./components/Error";
 import StartScreen from "./components/StartScreen";
 import Question from "./components/Question";
 import NextButton from "./components/NextButton";
+import Progress from "./components/Progress";
 
 const initialState = {
   questions: [],
@@ -64,12 +65,18 @@ function App() {
   // reducer
   // const [state, dispatch] = useReducer(reducer, initialState);
   // state nested destructuring
-  const [{questions, status, index, answer}, dispatch] = useReducer(reducer, initialState);
+  const [
+    {
+      questions,
+      status,
+      index,
+      answer,
+      points
+    }, dispatch] = useReducer(reducer, initialState);
 
   // calculate derived state
   const numQuestions = questions.length;
-
-
+  const maxPossiblePoints = questions.reduce((prev, cur) => prev + cur.points, 0);
 
   // fetch data from questions.json
   useEffect(function () {
@@ -99,6 +106,13 @@ function App() {
         
         {status === 'active' && (
           <>
+            <Progress 
+              index={index}
+              numQuestions={numQuestions}
+              points={points}
+              maxPossiblePoints={maxPossiblePoints}
+            />
+
             <Question 
               question={questions[index]}
               dispatch={dispatch}
