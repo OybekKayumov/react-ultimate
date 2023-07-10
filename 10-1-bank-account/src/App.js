@@ -16,6 +16,7 @@ INSTRUCTIONS / CONSIDERATIONS:
 
 7. Customer can only close an account if there is no loan, AND if the balance is zero. If this condition is not met, just return the state. If the condition is met, the account is deactivated and all money is withdrawn. The account basically gets back to the initial state
 */
+import {useReducer} from 'react';
 
 const initialState = {
   balance: 0,
@@ -23,7 +24,27 @@ const initialState = {
   isActive: false
 };
 
+function reducer(state, action) {
+  switch (action.type) {
+    case 'openAccount':
+      return '';
+    case 'deposit':
+      return '';
+    case 'withdraw':
+      return '';
+    case 'requestLoan':
+      return '';
+    case 'payLoan':
+      return '';
+    case 'closeAccount':
+      return '';
+    default:
+      throw new Error('Unknown Error')
+  }
+}
+
 export default function App() {
+  const [{ balance, loan, isActive}, dispatch] = useReducer(reducer,initialState);
   return (
     <div className="App">
       <h1>useReducer Bank Account</h1>
