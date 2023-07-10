@@ -11,3 +11,13 @@
        - package.json add "server": "json-server --watch src/data/questions.json --port 8000"
        - npm run server
 
+### vite
+       - npm create vite@latest
+       Project name:
+       Select a framework:
+       Select a variant:
+              cd project-name
+              npm install
+              npm run dev
+
+npm i eslint vite-pligin-eslint eslint-config-reactapp --save-dev
