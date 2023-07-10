@@ -27,11 +27,21 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case 'openAccount':
-      return '';
+      return {
+        ...state,
+        balance: 500,
+        isActive: true,
+      };
     case 'deposit':
-      return '';
+      return {
+        ...state,
+        balance: state.balance + action.payload,
+      };
     case 'withdraw':
-      return '';
+      return {
+        ...state,
+        balance: state.balance - action.payload
+      };
     case 'requestLoan':
       return '';
     case 'payLoan':
@@ -48,36 +58,44 @@ export default function App() {
   return (
     <div className="App">
       <h1>useReducer Bank Account</h1>
-      <p>Balance: X</p>
-      <p>Loan: X</p>
+      <p>Balance: {balance}</p>
+      <p>Loan: {loan}</p>
 
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button 
+          onClick={() => dispatch({ type: "openAccount" })} 
+          disabled={isActive}
+        >
           Open account
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button onClick={() => dispatch({ type: 'deposit', payload: 150 })} 
+        disabled={!isActive}
+      >
           Deposit 150
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button 
+          onClick={() => dispatch({ type: 'withdraw', payload: 50 })}
+          disabled={!isActive}
+        >
           Withdraw 50
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button onClick={() => {}} disabled={!isActive}>
           Request a loan of 5000
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button onClick={() => {}} disabled={!isActive}>
           Pay loan
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button onClick={() => {}} disabled={!isActive}>
           Close account
         </button>
       </p>
