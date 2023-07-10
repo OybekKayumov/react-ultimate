@@ -9,6 +9,8 @@ import Question from "./components/Question";
 import NextButton from "./components/NextButton";
 import Progress from "./components/Progress";
 import FinishScreen from "./components/FinishScreen";
+import Footer from "./components/Footer";
+import Timer from "./components/Timer";
 
 const initialState = {
   questions: [],
@@ -21,6 +23,7 @@ const initialState = {
   answer: null, // no answer
   points: 0,
   highscore: 0,
+  secondsRemaining: 10,
 };
 
 function reducer(state, action) {
@@ -82,6 +85,11 @@ function reducer(state, action) {
       //   answer: null,
       //   status: 'ready'
       // }
+    case 'tick':
+      return {
+        ...state,
+        secondsRemaining: state.secondsRemaining - 1,
+      }
     default:
       throw new Error("Action Unknown");
   }
@@ -99,6 +107,7 @@ function App() {
       answer,
       points,
       highscore,
+      secondsRemaining,
     }, dispatch] = useReducer(reducer, initialState);
 
   // calculate derived state
@@ -147,12 +156,19 @@ function App() {
               answer={answer}
               />
 
-            <NextButton 
-              dispatch={dispatch}
-              answer={answer}
-              numQuestions={numQuestions}
-              index={index}
-            />
+            <Footer>
+              <Timer 
+                dispatch={dispatch}
+                secondsRemaining={secondsRemaining}
+              />
+
+              <NextButton 
+                dispatch={dispatch}
+                answer={answer}
+                numQuestions={numQuestions}
+                index={index}
+                />
+            </Footer>
           </>
         )}
 
@@ -161,6 +177,7 @@ function App() {
             points={points}
             maxPossiblePoints={maxPossiblePoints}
             highscore={highscore}
+            dispatch={dispatch}
           />
         )}
       </Main>
