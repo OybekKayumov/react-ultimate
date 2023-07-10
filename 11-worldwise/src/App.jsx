@@ -7,13 +7,16 @@ import Home from './pages/Home';
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='product' element={<Product />} />
-        <Route path='pricing' element={<Pricing />} />
-      </Routes>
-    </BrowserRouter>
+    /* <div> */ 
+    /* <h2>Hello Router!</h2> */
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='product' element={<Product />} />
+          <Route path='pricing' element={<Pricing />} />
+        </Routes>
+      </BrowserRouter>
+    /* </div> */
   )
 }
 
