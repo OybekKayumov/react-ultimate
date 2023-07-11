@@ -12,6 +12,6 @@
   background-color: green;
 }
 
-:global(.test) {
+/* :global(.test) {
   background-color: red;
-}
+} */
