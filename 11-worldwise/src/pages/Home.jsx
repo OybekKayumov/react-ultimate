@@ -7,7 +7,7 @@ const Home = () => {
     <div>
       <PageNav />
       <AppNav />
-      <h1>WorldWise</h1>
+      <h1 className="test">WorldWise</h1>
 
       {/* page reloaded */}
       {/* <a href="/pricing">Pricing</a> */}
