@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
+// import PostProvider from "./PostContext";
+import { PostProvider, PostContext } from "./PostContext";
 
 function createRandomPost() {
   return {
@@ -53,6 +55,7 @@ function App() {
     //   searchQuery,
     //   setSearchQuery,
     // }}>
+    <PostProvider>
       <section>
         <button
           onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
@@ -73,7 +76,8 @@ function App() {
         <Archive />
         <Footer />
       </section>
-    // </PostContext.Provider>
+    {/* </PostContext.Provider> */}
+    </PostProvider>
   );
 }
 
