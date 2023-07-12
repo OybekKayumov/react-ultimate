@@ -11,6 +11,14 @@ const Map = () => {
       <h1>Map</h1>
 
       <h2>Pos: {lat}:{lng}</h2>
+
+      <button 
+        onClick={() => {
+          setSearchParams({lat: 34, lng: 50 })
+        }}
+      >
+        Change Position
+      </button>
     </div>
   )
 }
