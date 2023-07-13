@@ -5,6 +5,10 @@ import { useState } from 'react';
 
 const Map = () => {
   const navigate = useNavigate();
+
+  // global state - inside context
+  const {cities} = useCities()
+
   const [mapPosition, setMapPosition] = useState([40, 0])
 
   const [searchParams, setSearchParams] = useSearchParams();
