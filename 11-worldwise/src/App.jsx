@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import './App.css'
@@ -12,6 +12,7 @@ import CityList from './components/CityList';
 import CountryList from './components/CountryList';
 import City from './components/City';
 import Form from './components/Form';
+import { CitiesProvider } from './contexts/CitiesContext';
 
 // const BASE_URL = `http://localhost:8000`;
 
@@ -37,8 +38,7 @@ function App() {
   // }, [])
 
   return (
-    /* <div> */ 
-    /* <h2>Hello Router!</h2> */
+    <CitiesProvider>
       <BrowserRouter>
         <Routes>
           {/* <Route path='/' element={<Homepage />} /> */}
@@ -69,8 +69,8 @@ function App() {
           </Route>
           <Route path='*' element={<PageNotFound />} />
         </Routes>
-      </BrowserRouter> 
-    /* </div> */
+      </BrowserRouter>
+    </CitiesProvider>
   )
 }
 
