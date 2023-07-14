@@ -51,6 +51,7 @@ const Map = () => {
           </Marker>
         ))}
         <ChangeCenter position={mapPosition} />
+        <DetectClick />
       </MapContainer>
     </div>
   )
@@ -62,5 +63,12 @@ function ChangeCenter({ position }) {
   return null;
 }
 
+function DetectClick() {
+  const navigate = useNavigate();
+
+  useMapEvents({
+    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
+  });
+}
 
 export default Map;
