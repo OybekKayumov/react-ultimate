@@ -29,8 +29,8 @@ function Form() {
 
   // const [mapLat, mapLng] = useUrlPosition();
   const [lat, lng] = useUrlPosition();
-  const {createCity} = useCities();
-
+  const {createCity, isLoading} = useCities();
+  
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
@@ -67,7 +67,7 @@ function Form() {
     fetchCityData();
   }, [lat, lng])
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (!cityName || !date) return;
@@ -81,8 +81,9 @@ function Form() {
       position: {lat, lng},
     }
 
-    console.log('newCity: ', newCity );
-    createCity(newCity);
+    // console.log('newCity: ', newCity );
+    await createCity(newCity);
+    navigate("/app/cities");
   }
 
   if (isLoadingGeocoding) return <Spinner />;
@@ -94,7 +95,7 @@ function Form() {
 
   return (
     <form 
-      className={styles.form}
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
       onSubmit={handleSubmit}
     >
       <div className={styles.row}>
