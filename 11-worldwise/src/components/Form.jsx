@@ -12,6 +12,7 @@ import Spinner from './Spinner';
 import Message from './Message';
 
 import styles from "./Form.module.css";
+import { useCities } from "../contexts/CitiesContext";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -28,6 +29,7 @@ function Form() {
 
   // const [mapLat, mapLng] = useUrlPosition();
   const [lat, lng] = useUrlPosition();
+  const {createCity} = useCities();
 
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
@@ -68,7 +70,19 @@ function Form() {
   function handleSubmit(e) {
     e.preventDefault();
 
+    if (!cityName || !date) return;
 
+    const newCity = {
+      cityName,
+      country,
+      emoji,
+      date,
+      notes,
+      position: {lat, lng},
+    }
+
+    console.log('newCity: ', newCity );
+    createCity(newCity);
   }
 
   if (isLoadingGeocoding) return <Spinner />;
