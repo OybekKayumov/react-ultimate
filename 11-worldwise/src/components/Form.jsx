@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import Button from "./Button";
 import BackButton from "./BackButton";
 import { useUrlPosition } from "../hooks/useUrlPosition";
@@ -65,7 +68,7 @@ function Form() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    
+
   }
 
   if (isLoadingGeocoding) return <Spinner />;
@@ -92,10 +95,16 @@ function Form() {
 
       <div className={styles.row}>
         <label htmlFor="date">When did you go to {cityName}?</label>
-        <input
+        {/* <input
           id="date"
           onChange={(e) => setDate(e.target.value)}
           value={date}
+        /> */}
+        <DatePicker
+          id="date"
+          onChange={(date) => setDate(date)}
+          selected={date}
+          dateFormat='dd/MM/yyyy'
         />
       </div>
 
