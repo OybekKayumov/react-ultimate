@@ -1,27 +1,30 @@
-import React, { useEffect } from 'react'
+import { useEffect } from "react";
+import { useQuiz } from "../contexts/QuizContext";
 
-const Timer = ({ dispatch, secondsRemaining }) => {
-  const min = Math.floor(secondsRemaining / 60);
-  const second = secondsRemaining % 60;
+function Timer() {
+  const { dispatch, secondsRemaining } = useQuiz();
 
-  useEffect(function() {
-    const id = setInterval(() => {
-      dispatch({ type: 'tick'})
-    }, 1000);
+  const mins = Math.floor(secondsRemaining / 60);
+  const seconds = secondsRemaining % 60;
 
-    return () => clearInterval(id);
-  }, [dispatch])
+  useEffect(
+    function () {
+      const id = setInterval(function () {
+        dispatch({ type: "tick" });
+      }, 1000);
+
+      return () => clearInterval(id);
+    },
+    [dispatch]
+  );
 
   return (
-    <div className='timer'>
-      {/* {secondsRemaining} */}
-      
-      {min < 10 && "0"}
-      {min}:
-      {second < 10 && "0"}
-      {second}
+    <div className="timer">
+      {mins < 10 && "0"}
+      {mins}:{seconds < 10 && "0"}
+      {seconds}
     </div>
-  )
+  );
 }
 
-export default Timer
+export default Timer;
