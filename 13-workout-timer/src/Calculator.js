@@ -26,10 +26,16 @@ function Calculator({ workouts, allowSound }) {
 
   function handleInc() {
     setDuration(duration => Math.floor(duration) + 1);
+    playSound();
   }
 
   function handleDec() {
-    setDuration(duration => Math.ceil(duration) - 1);
+    setDuration(duration => duration > 1 
+      ? Math.ceil(duration) - 1
+      : 0
+    );
+
+    playSound();
   }
 
   return (
