@@ -67,7 +67,11 @@ function App() {
       <Main posts={searchedPosts} onAddPost={handleAddPost} />
       {/* <Archive onAddPost={handleAddPost} /> */}
       {/* <Archive show={false} /> */}
-      <Archive archiveOptions={archiveOptions} onAddPost={handleAddPost} />
+      <Archive 
+        archiveOptions={archiveOptions} 
+        onAddPost={handleAddPost}
+        setIsFakeDark={setIsFakeDark}
+      />
       <Footer />
     </section>
   );
