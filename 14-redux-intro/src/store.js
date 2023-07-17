@@ -41,7 +41,7 @@ function reducer(state = initialState, action) {
   }
 };
 
-// Creating a Redux Store
+// TODO: Creating a Redux Store
 const store = createStore(reducer);
 
 store.dispatch({ type: 'account/deposit', payload: 500 });
@@ -60,3 +60,7 @@ console.log('from redux: Hi!', store.getState());
 store.dispatch({ type: 'account/payLoan' });
 console.log('from redux: Hi!', store.getState());
 
+// TODO: Action Creators
+function deposit(amount) {
+  
+}
