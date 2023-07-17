@@ -6,7 +6,7 @@ import {
   useCallback,
 } from "react";
 
-const BASE_URL = `http://localhost:8000`;
+const BASE_URL = "http://localhost:8000";
 
 const CitiesContext = createContext();
 
@@ -20,20 +20,16 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'loading': 
+    case "loading": 
       return { ...state, isLoading: true };
-    case 'cities/loaded':  // setCities
+    case "cities/loaded":  // setCities
       return {
         ...state, 
         isLoading: false,
         cities: action.payload,
       };
     case 'city/loaded':
-      return {
-        ...state,
-        isLoading: false,
-        currentCity: action.payload
-      };
+      return { ...state, isLoading: false, currentCity: action.payload };
 
     case 'city/created':
       return {
@@ -41,12 +37,12 @@ function reducer(state, action) {
         isLoading: false,
         cities: [...state.cities, action.payload],
         currentCity: action.payload,
-      }
+      };
     case 'city/deleted':
       return {
         ...state,
         isLoading: false,
-        cities: state.cities.filter(city => city.id !== action.payload),
+        cities: state.cities.filter((city) => city.id !== action.payload),
         currentCity: {},
       };
     case 'rejected':
@@ -55,6 +51,7 @@ function reducer(state, action) {
         isLoading: false,
         error: action.payload,
       };
+
     default:
       throw new Error("Unknown action type");
   }
@@ -84,7 +81,8 @@ function CitiesProvider({ children }) {
     fetchCities();
   }, []);
 
-  const getCity = useCallback( async function getCity(id) {
+  const getCity = useCallback(
+     async function getCity(id) {
     if (Number(id) === currentCity.id) return;
 
     dispatch({ type: 'loading' })
