@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 function createRandomPost() {
@@ -42,10 +42,12 @@ function App() {
   );
 
   // passing an object
-  const archiveOptions = {
-    show: false,
-    title: "Post archive in addition to main posts",
-  } 
+  const archiveOptions = useMemo(() => {
+    return {
+      show: false,
+      title: "Post archive in addition to main posts",
+    };
+  }, []);  // dependency array
 
   return (
     <section>
