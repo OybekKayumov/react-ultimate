@@ -4,27 +4,21 @@ const initialStateAccount = {
   balance: 0,
   loan: 0,
   loanPurpose: "",
-}
+};
 
 const initialStateCustomer = {
-  fullName: '',
-  nationalID: '',
-  createdAt: '',
+  fullName: "",
+  nationalID: "",
+  createdAt: "",
 };
 
 // important to remember that reducers are not allowed to modify the existing state and they're also not allowed to do any asynchronous logic or other side effects.
 function accountReducer(state = initialStateAccount, action) {
   switch (action.type) {
     case "account/deposit":
-      return {
-        ...state,
-        balance: state.balance + action.payload
-      };
+      return { ...state, balance: state.balance + action.payload };
     case "account/withdraw":
-      return {
-        ...state,
-        balance: state.balance - action.payload
-      };
+      return { ...state, balance: state.balance - action.payload };
     case "account/requestLoan":
       if (state.loan > 0) return state;
    
@@ -32,7 +26,7 @@ function accountReducer(state = initialStateAccount, action) {
         ...state,
         loan: action.payload.amount,
         loanPurpose: action.payload.purpose,
-        balance: state.balance + action.payload.amount
+        balance: state.balance + action.payload.amount,
       };
     case "account/payLoan":
       return {
@@ -49,7 +43,7 @@ function accountReducer(state = initialStateAccount, action) {
 
 function customerReducer(state = initialStateCustomer, action) {
   switch (action.type) {
-    case "customer/createCustomer ":
+    case "customer/createCustomer":
       return {
         ...state,
         fullName: action.payload.fullName,
@@ -57,10 +51,7 @@ function customerReducer(state = initialStateCustomer, action) {
         createdAt: action.payload.createdAt,
       };
     case "customer/updateName":
-      return {
-        ...state,
-        fullName: action.payload,
-      };
+      return { ...state, fullName: action.payload };
     
     default:
       return state;
@@ -73,8 +64,8 @@ function customerReducer(state = initialStateCustomer, action) {
 // combine reducers
 const rootReducer = combineReducers({
   account: accountReducer,
-  customer: customerReducer
-})
+  customer: customerReducer,
+});
 const store = createStore(rootReducer);
 
 /*
@@ -99,27 +90,27 @@ console.log('from redux: Hi!', store.getState());
 const ACCOUNT_DEPOSIT = 'account/deposit'
 
 function deposit(amount) {
-  return { type: ACCOUNT_DEPOSIT, payload: amount}
+  return { type: ACCOUNT_DEPOSIT, payload: amount }
 }
 
 function withdraw(amount) {
-  return { type: 'account/withdraw', payload: amount}
+  return { type: 'account/withdraw', payload: amount }
 }
 
 function requestLoan(amount, purpose) {
   return {
     type: 'account/requestLoan', 
-    payload: {  amount, purpose}
+    payload: {  amount, purpose },
   } 
 }
 
-function payLoan(amount, purpose) {
+function payLoan() {
   return { type: 'account/payLoan'}
 }
 
 store.dispatch(deposit(500));
 store.dispatch(withdraw(200));
-store.dispatch(requestLoan(1000));
+store.dispatch(requestLoan(1000, "Buy a book"));
 store.dispatch(payLoan());
 
 console.log(': ', store.getState());
@@ -129,10 +120,13 @@ console.log(': ', store.getState());
 function createCustomer(fullName, nationalID) {
   return {
     type: 'customer/createCustomer',
-    payload: {fullName, nationalID, createdAt: new Date().toISOString()}
+    payload: { fullName, nationalID, createdAt: new Date().toISOString() },
   };
 }
 
 function updateName(fullName) {
   return { type: "account/updateName", payload: fullName };
 }
+
+store.dispatch(createCustomer("John Doe", "34567812"));
+console.log(store.getState());
