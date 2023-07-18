@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 function Customer() {
   const [fullName, setFullName] = useState("");
   const [nationalId, setNationalId] = useState("");
 
-  function handleClick() {}
+  const dispatch = useDispatch()
+
+  function handleClick() {
+    dispatch()
+  }
 
   return (
     <div>
