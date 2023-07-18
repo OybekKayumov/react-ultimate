@@ -6,10 +6,10 @@ function Customer() {
   //   account: accountReducer,
   //!   customer: customerReducer,
   // });
-  const customer = useSelector(store => store.customer);
+  const customer = useSelector(store => store.customer.fullName);
   console.log('from customer component: ', customer);
 
-  return <h2>👋 Welcome, %NAME%</h2>;
+  return <h2>👋 Welcome, {customer}</h2>;
 }
 
 export default Customer;
