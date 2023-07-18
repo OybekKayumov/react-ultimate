@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 
 const initialStateAccount = {
   balance: 0,
@@ -13,7 +13,7 @@ const initialStateCustomer = {
 };
 
 // important to remember that reducers are not allowed to modify the existing state and they're also not allowed to do any asynchronous logic or other side effects.
-function reducer(state = initialStateAccount, action) {
+function accountReducer(state = initialStateAccount, action) {
   switch (action.type) {
     case "account/deposit":
       return {
@@ -47,10 +47,37 @@ function reducer(state = initialStateAccount, action) {
   }
 };
 
-// TODO: Creating a Redux Store
-const store = createStore(reducer);
-/*
+function customerReducer(state = initialStateCustomer, action) {
+  switch (action.type) {
+    case "customer/createCustomer ":
+      return {
+        ...state,
+        fullName: action.payload.fullName,
+        nationalID: action.payload.nationalID,
+        createdAt: action.payload.createdAt,
+      };
+    case "customer/updateName":
+      return {
+        ...state,
+        fullName: action.payload,
+      };
+    
+    default:
+      return state;
+  }
+};
 
+// TODO: Creating a Redux Store
+// const store = createStore(accountReducer);
+
+// combine reducers
+const rootReducer = combineReducers({
+  account: accountReducer,
+  customer: customerReducer
+})
+const store = createStore(rootReducer);
+
+/*
 store.dispatch({ type: 'account/deposit', payload: 500 });
 // console.log('from redux: Hi!', store.getState());
 store.dispatch({ type: 'account/withdraw', payload: 200 });
