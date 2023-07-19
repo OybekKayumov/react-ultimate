@@ -31,7 +31,8 @@
        `
 
        edit .vite.config.js file:
-       `+import eslint from 'vite-plugin-eslint';
+       `
+       +import eslint from 'vite-plugin-eslint';
        
        +plugins: [react(), eslint()], 
        `
