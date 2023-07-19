@@ -21,17 +21,15 @@
               npm run dev
 
 ### vite - eslint
-       npm i eslint vite-plugin-eslint eslint-config-react-app --save-dev
+       - npm i eslint vite-plugin-eslint eslint-config-react-app --save-dev
 
-       add .eslint.json file with:
-       `
-        {
-          "extends": "react-app"
-        }
-       `
-
-       edit .vite.config.js file:
-       `+import eslint from 'vite-plugin-eslint';
+       - add .eslint.json file with:
+          {
+             "extends": "react-app"
+          }
        
-       +plugins: [react(), eslint()], 
-       `
+       - edit .vite.config.js file:
+          +import eslint from 'vite-plugin-eslint';
+       
+          +plugins: [react(), eslint()], 
+       
