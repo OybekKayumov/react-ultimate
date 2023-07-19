@@ -20,5 +20,18 @@
               npm install
               npm run dev
 
-### react-router-dom
-       npm i eslint vite-pligin-eslint eslint-config-reactapp --save-dev
+### vite - eslint
+       npm i eslint vite-plugin-eslint eslint-config-react-app --save-dev
+
+       .eslint.json file:
+       `
+        {
+          "extends": "react-app"
+        }
+       `
+
+       .vite.config.js file:
+       `import eslint from 'vite-plugin-eslint';
+       
+       plugins: [react(), eslint()], 
+       `
