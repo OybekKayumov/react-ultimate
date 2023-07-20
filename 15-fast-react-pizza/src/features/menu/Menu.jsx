@@ -1,11 +1,13 @@
+import { useLoaderData } from "react-router-dom";
 import { getMenu } from "../../services/apiRestaurant";
 
 function Menu() {
-  return <h1>Menu</h1>;
+  const menu = useLoaderData();
+  console.log('menu: ', menu);
 }
 
 // create a loader fn --> fetch data and return it
-function loader() {
+export async function loader() {
   const menu = await getMenu();
   return menu;
 }
