@@ -3,8 +3,8 @@ import CreateUser from "../features/user/CreateUser";
 function Home() {
   return (
     // mb-10 mt-10 = my-10
-    <div className="my-10 sm:my-16 text-center"> 
-      <h1 className="text-xl font-semibold mb-8">
+    <div className="my-10 sm:my-16 text-center px-4"> 
+      <h1 className="text-xl font-semibold mb-8 mb:text-3xl">
         The best pizza.
         <br />
         <span className="text-emerald-500">
