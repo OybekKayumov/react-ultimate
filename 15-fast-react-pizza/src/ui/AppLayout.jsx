@@ -10,7 +10,7 @@ const AppLayout = () => {
 
 
   return (
-    <div className='layout'>
+    <div className='grid h-[600px] bg-red-400 grid-rows-[auto_1fr_auto]'>
       {isLoading && <Loader />}
       
       <Header />
