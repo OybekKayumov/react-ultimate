@@ -12,6 +12,9 @@ export default {
       color: {
         pizza: "#123456"
       },
+      height: {
+        screen: '100dvh'
+      }
     },
   },
   plugins: [],
