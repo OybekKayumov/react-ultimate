@@ -10,14 +10,16 @@ const AppLayout = () => {
 
 
   return (
-    <div className='grid h-[600px] bg-red-400 grid-rows-[auto_1fr_auto]'>
+    <div className='grid h-screen bg-sky-400 grid-rows-[auto_1fr_auto]'>
       {isLoading && <Loader />}
       
       <Header />
 
-      <main>
-        <Outlet />
-      </main>
+      <div className="overflow-scroll">
+        <main className='max-w-3xl bg-fuchsia-300 mx-auto'>
+          <Outlet />
+        </main>
+      </div>
 
       <CartOverview />
     </div>
