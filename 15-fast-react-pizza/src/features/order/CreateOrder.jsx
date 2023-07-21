@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
+import Button from "../../ui/Button";
 
 // https://uibakery.io/regex-library/phone-number
 // eslint-disable-next-line no-unused-vars
@@ -53,13 +54,13 @@ function CreateOrder() {
       <Form method="POST">
         <div>
           <label>First Name</label>
-          <input className="input" type="text" name="customer" required />
+          <input className="input w-full" type="text" name="customer" required />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input className="input" type="tel" name="phone" required />
+            <input className="input w-full" type="tel" name="phone" required />
           </div>
           {/* optional chaining -> if error then show */}
           { formErrors?.phone && <p>{formErrors.phone}</p>}
@@ -91,15 +92,15 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <button 
+          <Button 
             disabled={isSubmitting}
-            className="bg-yellow-400 uppercase font-semibold text-stone-800 py-3 px-4 inline-block tracking-wide rounded-full hover:bg-yellow-300 transition-colors duration-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:bg-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed "
+            
           >
             {isSubmitting 
               ? "Placing Order..." 
               : "Order now"
             }
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
