@@ -9,7 +9,6 @@ const AppLayout = () => {
   console.log(': ', navigation);
   const isLoading = navigation.state === "loading";
 
-
   return (
     <div className='grid h-screen bg-sky-400 grid-rows-[auto_1fr_auto]'>
       {isLoading && <Loader />}

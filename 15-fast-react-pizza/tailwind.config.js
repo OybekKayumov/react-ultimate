@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: 'Roboto Mono, monospace'
+    },    
+    extend: {
+      color: {
+        pizza: "#123456"
+      },
+    },
   },
   plugins: [],
 }
