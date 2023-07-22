@@ -6,6 +6,11 @@ function CreateUser() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    // update redux store and redirect user to menu
+    if (!username) return;
+
+    
   }
 
   return (
