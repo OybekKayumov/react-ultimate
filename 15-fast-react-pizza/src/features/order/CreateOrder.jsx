@@ -6,7 +6,8 @@ import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
 import EmptyCart from "../cart/EmptyCart";
-import {getCart} from "../cart/cartSlice.js"
+import {clearCart, getCart} from "../cart/cartSlice.js";
+import store from "../../store.js";
 
 // https://uibakery.io/regex-library/phone-number
 // eslint-disable-next-line no-unused-vars
@@ -146,6 +147,9 @@ export async function action({ request }) {
 
   // if everything OK, create new Order and redirect
   const newOrder = await createOrder(order);
+
+  // ! do not overuse
+  store.dispatch(clearCart());
 
   return redirect(`/order/${newOrder.id}`);
 }
