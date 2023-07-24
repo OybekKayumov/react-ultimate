@@ -28,7 +28,7 @@ export const fetchAddress = createAsyncThunk('user/fetchAddress', async function
 // create a slice of global UI state using redux toolkit
 // slice name is  user
 const initialState = {
-  username: "test",
+  username: "",
   status: "idle",
   position: {},
   address: "",
