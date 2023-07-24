@@ -6,8 +6,9 @@ import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
 import EmptyCart from "../cart/EmptyCart";
-import {clearCart, getCart} from "../cart/cartSlice.js";
+import {clearCart, getCart, getTotalCartPrice} from "../cart/cartSlice.js";
 import store from "../../store.js";
+import {formatCurrency} from "../../utils/helpers";
 
 // https://uibakery.io/regex-library/phone-number
 // eslint-disable-next-line no-unused-vars
@@ -41,16 +42,19 @@ const isValidPhone = (str) =>
 // ];
 
 function CreateOrder() {
+  const [withPriority, setWithPriority] = useState(false);
   const username = useSelector(state => state.user.username);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
 
   const formErrors = useActionData();
 
-  // const [withPriority, setWithPriority] = useState(false);
   // eslint-disable-next-line no-unused-vars
   // const cart = fakeCart;
   const cart = useSelector(getCart);
+  const totalCartPrice = useSelector(getTotalCartPrice);
+  const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
+  const totalPrice = totalCartPrice + priorityPrice;
 
   if (!cart.length) return <EmptyCart />
 
@@ -98,9 +102,9 @@ function CreateOrder() {
             className="h-6 w-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2"
             type="checkbox"
             name="priority"
-            id="priority"
-            // value={withPriority}
-            // onChange={(e) => setWithPriority(e.target.checked)}
+            id="priority" 
+            value={withPriority}
+            onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority" className="font-medium">Want to yo give your order priority?</label>
         </div>
@@ -113,7 +117,7 @@ function CreateOrder() {
           >
             {isSubmitting 
               ? "Placing Order..." 
-              : "Order now"
+              : `Order now from ${formatCurrency(totalPrice)}`
             }
           </Button>
         </div>
@@ -130,7 +134,7 @@ export async function action({ request }) {
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
-    priority: data.priority === "on",
+    priority: data.priority === "true",
   }
   
   // check phone number
