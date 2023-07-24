@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 // eslint-disable-next-line no-unused-vars
 import { useState } from "react";
@@ -44,7 +45,14 @@ const isValidPhone = (str) =>
 
 function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
-  const username = useSelector(state => state.user.username);
+  const {
+    username,
+    status: addressStatus,
+    position, 
+    address,
+    error: errorAddress,
+  } = useSelector(state => state.user);
+  const isLoadingAddress = addressStatus == 'loading';
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
 
@@ -85,22 +93,39 @@ function CreateOrder() {
           <div className="grow">
             <input className="input w-full" type="tel" name="phone" required />
             {/* optional chaining -> if error then show */}
-            { formErrors?.phone && <p className="text-xs mt-2 text-red-700 bg-red-200 p-2 rounded-md">{formErrors.phone}</p>}
+             
           </div>
         </div>
 
-        <div className="mb-5 flex gap-2 flex-col sm:flex-row sm:items-center">
+        <div className="relative mb-5 flex gap-2 flex-col sm:flex-row sm:items-center">
           <label className="sm:basis-40">Address</label>
           <div className="grow">
             <input 
+            className="input w-full "
             type="text" 
             name="address" 
+            disabled={isLoadingAddress}
+            defaultValue={address}
             required 
-            className="input w-full "
           />
+          {addressStatus === 'error' && <p className="text-xs mt-2 text-red-700 bg-red-200 p-2 rounded-md">{errorAddress}</p>}
           </div>
 
-          <button onClick={() => dispatch(fetchAddress())}>Get Position</button>
+          {!position.latitude && !position.longitude && 
+          (
+            <span className="absolute right-[3px] z-50">
+              <Button 
+                disabled={isLoadingAddress}
+                type="small"
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(fetchAddress());
+                }}
+              >
+                Get Position
+              </Button>
+            </span>
+          )}
         </div>
 
         <div className="mb-12 flex gap-5 items-center">
@@ -118,7 +143,7 @@ function CreateOrder() {
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <Button
-            disabled={isSubmitting}
+            disabled={isSubmitting || isLoadingAddress}
             type="primary"
           >
             {isSubmitting 
