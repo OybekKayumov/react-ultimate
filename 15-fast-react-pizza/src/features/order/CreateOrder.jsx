@@ -64,7 +64,7 @@ function CreateOrder() {
     <div className="py-6 px-6">
       <h2 className="text-xl font-semibold mb-8">Ready to order? Let's go!</h2>
 
-      <button onClick={() => dispatch(fetchAddress())}>Get Position</button>
+      {/* <button onClick={() => dispatch(fetchAddress())}>Get Position</button> */}
 
       {/* <Form method="POST" action="/order/new"> */}
       <Form method="POST">
@@ -99,6 +99,8 @@ function CreateOrder() {
             className="input w-full "
           />
           </div>
+
+          <button onClick={() => dispatch(fetchAddress())}>Get Position</button>
         </div>
 
         <div className="mb-12 flex gap-5 items-center">
