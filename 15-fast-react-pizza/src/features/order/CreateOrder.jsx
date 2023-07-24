@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 // eslint-disable-next-line no-unused-vars
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
@@ -9,6 +9,7 @@ import EmptyCart from "../cart/EmptyCart";
 import {clearCart, getCart, getTotalCartPrice} from "../cart/cartSlice.js";
 import store from "../../store.js";
 import {formatCurrency} from "../../utils/helpers";
+import { fetchAddress } from "../user/userSlice";
 
 // https://uibakery.io/regex-library/phone-number
 // eslint-disable-next-line no-unused-vars
@@ -48,6 +49,7 @@ function CreateOrder() {
   const isSubmitting = navigation.state === 'submitting';
 
   const formErrors = useActionData();
+  const dispatch = useDispatch();
 
   // eslint-disable-next-line no-unused-vars
   // const cart = fakeCart;
@@ -61,6 +63,8 @@ function CreateOrder() {
   return (
     <div className="py-6 px-6">
       <h2 className="text-xl font-semibold mb-8">Ready to order? Let's go!</h2>
+
+      <button onClick={() => dispatch(fetchAddress())}>Get Position</button>
 
       {/* <Form method="POST" action="/order/new"> */}
       <Form method="POST">
