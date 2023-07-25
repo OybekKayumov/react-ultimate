@@ -16,9 +16,9 @@ function App() {
     <>
     <GlobalStyles />
     <StyledApp>
-      <Heading type='h1'>The Wild Oasis</Heading>
+      <Heading as='h1'>The Wild Oasis</Heading>
 
-      <Heading type='h2'>Check In and Out</Heading>
+      <Heading as='h2'>Check In and Out</Heading>
       <Button>Check In</Button>
       <Input type="number" placeholder="Number of guests"/>
 
