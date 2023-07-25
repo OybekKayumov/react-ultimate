@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const NavList = styled.ul`
@@ -7,7 +8,7 @@ const NavList = styled.ul`
   gap: 0.8rem;
 `;
 
-const Link = styled.a`
+const StyledNavLink = styled(NavLink)`
   &:link,
   &:visited {
     display: flex;
@@ -52,11 +53,11 @@ function MainNav() {
     <nav>
       <NavList>
         <li>
-          <Link href="/dashboard">Home</Link>
+          <NavLink to="/dashboard">Home</NavLink>
         </li>
 
         <li>
-          <Link href="/bookings">Bookings</Link>
+          <NavLink to="/bookings">Bookings</NavLink>
         </li>
 
       </NavList>
