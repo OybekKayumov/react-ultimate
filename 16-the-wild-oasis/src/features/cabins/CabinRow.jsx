@@ -61,11 +61,14 @@ function CabinRow({cabin}) {
     // mutationFn: (id) => deleteCabin(id),
     mutationFn: deleteCabin,
     onSuccess: () => {
+      alert("Deleted")
       queryClient.invalidateQueries({
-        queryKey: ["cabins"]
-      })
-    }
-  })
+        queryKey: ["cabins"],
+      });
+    },
+
+    onError: err => alert(err.message),
+  });
 
   return (
     <TableRow role='row'>
