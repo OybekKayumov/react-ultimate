@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
-import { useEffect } from "react";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-import { getCabins } from "../services/apiCabins";
 import CabinTable from "../features/cabins/CabinTable";
+
+// import { useEffect } from "react";
+// import { getCabins } from "../services/apiCabins";
 
 function Cabins() {
 
@@ -16,7 +16,7 @@ function Cabins() {
     <>
       <Row type="horizontal">
         <Heading as="h1">All cabins</Heading>
-        <p>TEST</p>
+        <p>Filter / Sort</p>
 
         {/* <img src="https://ffglytqkuxpsyimghhhi.supabase.co/storage/v1/object/?public/cabin-omages/cabin-001.jpg" alt="cabin img" /> */}
       </Row>
