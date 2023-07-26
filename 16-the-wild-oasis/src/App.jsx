@@ -7,6 +7,7 @@ import styled from "styled-components";
 // import Row from "./ui/Row";
 
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {QueryClient} from "@tanstack/react-query";
 
 import GlobalStyles from "./styles/GlobalStyle";
 import Dashboard from "./pages/Dashboard";
@@ -18,6 +19,14 @@ import Account from "./pages/Account";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./ui/AppLayout";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
 
 function App() {
  
