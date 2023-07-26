@@ -31,7 +31,7 @@ const TableHeader = styled.header`
 
 const CabinTable = () => {
   const {isLoading, data: cabins, error} = useQuery({
-    queryKey: ['cabin'],
+    queryKey: ['cabins'],
     queryFn: getCabins,
   });
 
