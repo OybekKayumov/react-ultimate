@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers.js";
 import CreateCabinForm from "./CreateCabinForm.jsx";
 import { useDeleteCabin } from "./useDeleteCabin.js";
+import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import { useCreateCabin } from "./useCreateCabin.js";
 
 // import { toast } from "react-hot-toast";
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -54,6 +56,7 @@ const Discount = styled.div`
 function CabinRow({cabin}) {
   const [showForm, setShowForm] = useState(false);
   const { isDeleting, deleteCabin } = useDeleteCabin();
+  const {isCreating, createCabin} = useCreateCabin();
 
   const { 
     id: cabinId,
@@ -61,8 +64,20 @@ function CabinRow({cabin}) {
     maxCapacity, 
     regularPrice, 
     discount, 
-    image 
+    image,
+    description 
   } = cabin;
+
+  function handleDuplicate() {
+    createCabin({
+      name: `Copy of ${name}`,
+      maxCapacity, 
+      regularPrice, 
+      discount, 
+      image,
+      description 
+    })
+  }
 
   // const queryClient = useQueryClient();
 
@@ -95,9 +110,15 @@ function CabinRow({cabin}) {
 
       <div>
         <button
+          disabled={isCreating}
+          onClick={handleDuplicate}
+        >
+          <HiSquare2Stack />
+        </button>
+        <button
           onClick={() => setShowForm(show => !show)}
           >
-          Edit
+          <HiPencil />
         </button>
 
         <button 
@@ -105,7 +126,7 @@ function CabinRow({cabin}) {
           onClick={() => deleteCabin(cabinId)}
           disabled={isDeleting}
           >
-          Delete
+          <HiTrash />
         </button>
       </div>
     </TableRow>
