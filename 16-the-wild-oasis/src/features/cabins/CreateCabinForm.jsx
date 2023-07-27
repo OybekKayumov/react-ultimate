@@ -1,4 +1,7 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+import { useForm } from "react-hook-form";
+
 import styled from "styled-components";
 
 import Input from "../../ui/Input";
@@ -44,31 +47,82 @@ const Error = styled.span`
 `;
 
 function CreateCabinForm() {
+  const {register, handleSubmit} = useForm();
+
+  function onSubmit(data) {
+    
+  }
+   
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow>
         <Label htmlFor="name">Cabin name</Label>
-        <Input type="text" id="name" />
+        <Input 
+          type="text" 
+          id="name" 
+          {...register("name")}
+        />
       </FormRow>
 
       <FormRow>
         <Label htmlFor="maxCapacity">Maximum capacity</Label>
-        <Input type="number" id="maxCapacity" />
+        <Input 
+          type="number" 
+          id="maxCapacity" 
+          // disabled={isCreating}
+          {...register("maxCapacity", {
+            required: "This field is required",
+            min: {
+              value: 1,
+              message: "Capacity should be at least 1",
+            },
+          })}
+        />
       </FormRow>
 
       <FormRow>
         <Label htmlFor="regularPrice">Regular price</Label>
-        <Input type="number" id="regularPrice" />
+        <Input 
+          type="number" 
+          id="regularPrice" 
+          // disabled={isCreating}
+          {...register("regularPrice", {
+            required: "This field is required",
+            min: {
+              value: 1,
+              message: "Capacity should be at least 1",
+            },
+          })}
+        />
       </FormRow>
 
       <FormRow>
         <Label htmlFor="discount">Discount</Label>
-        <Input type="number" id="discount" defaultValue={0} />
+        <Input
+          type="number"
+          id="discount"
+          // disabled={isCreating}
+          defaultValue={0}
+          {...register("discount", {
+            required: "This field is required",
+            validate: (value) =>
+              value <= getValues().regularPrice ||
+              "Discount should be less than regular price",
+          })}
+        />
       </FormRow>
 
       <FormRow>
         <Label htmlFor="description">Description for website</Label>
-        <Textarea type="number" id="description" defaultValue="" />
+        <Textarea
+          type="number"
+          id="description"
+          defaultValue=""
+          disabled={isCreating}
+          {...register("description", {
+            required: "This field is required",
+          })}
+        />
       </FormRow>
 
       <FormRow>
