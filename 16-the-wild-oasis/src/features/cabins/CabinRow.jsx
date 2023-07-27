@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { toast } from "react-hot-toast";
-import styled from "styled-components";
-import { formatCurrency } from "../../utils/helpers.js";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteCabin } from "../../services/apiCabins.js";
 import { useState } from "react";
+import styled from "styled-components";
+
+import { formatCurrency } from "../../utils/helpers.js";
 import CreateCabinForm from "./CreateCabinForm.jsx";
+import { useDeleteCabin } from "./useDeleteCabin.js";
+
+// import { toast } from "react-hot-toast";
+// import { useMutation, useQueryClient } from "@tanstack/react-query";
+// import { deleteCabin } from "../../services/apiCabins.js";
 
 const TableRow = styled.div`
   display: grid;
@@ -50,6 +53,7 @@ const Discount = styled.div`
 
 function CabinRow({cabin}) {
   const [showForm, setShowForm] = useState(false);
+  const { isDeleting, deleteCabin } = useDeleteCabin();
 
   const { 
     id: cabinId,
@@ -60,20 +64,20 @@ function CabinRow({cabin}) {
     image 
   } = cabin;
 
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
-  const { isLoading: isDeleting, mutate } = useMutation({
-    // mutationFn: (id) => deleteCabin(id),
-    mutationFn: deleteCabin,
-    onSuccess: () => {
-      toast.success("Cabin successfully deleted!")
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
-    },
+  // const { isLoading: isDeleting, mutate } = useMutation({
+  //   // mutationFn: (id) => deleteCabin(id),
+  //   mutationFn: deleteCabin,
+  //   onSuccess: () => {
+  //     toast.success("Cabin successfully deleted!")
+  //     queryClient.invalidateQueries({
+  //       queryKey: ["cabins"],
+  //     });
+  //   },
 
-    onError: err => toast.error(err.message),
-  });
+  //   onError: err => toast.error(err.message),
+  // });  
 
   return (
     <>
@@ -97,7 +101,8 @@ function CabinRow({cabin}) {
         </button>
 
         <button 
-          onClick={() => mutate(cabinId)}
+          // onClick={() => mutate(cabinId)}
+          onClick={() => deleteCabin(cabinId)}
           disabled={isDeleting}
           >
           Delete
