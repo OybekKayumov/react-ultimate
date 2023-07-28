@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 
 const StyledModal = styled.div`
@@ -48,3 +49,11 @@ const Button = styled.button`
     color: var(--color-grey-500);
   }
 `;
+
+function Modal() {
+  return (
+    <StyledModal>Modal</StyledModal>
+  )
+}
+
+export default Modal;

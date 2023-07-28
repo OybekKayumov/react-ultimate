@@ -1,39 +1,29 @@
+// import { useState } from "react";
+import CabinTable from "../features/cabins/CabinTable";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-import CabinTable from "../features/cabins/CabinTable";
-import Button from "../ui/Button";
-import { useState } from "react";
-import CreateCabinForm from "../features/cabins/CreateCabinForm";
-
-// import { useEffect } from "react";
-// import { getCabins } from "../services/apiCabins";
+// import Button from "../ui/Button";
+// import CreateCabinForm from "../features/cabins/CreateCabinForm";
+import AddCabin from "../features/cabins/AddCabin";
 
 function Cabins() {
-  const [showForm, setShowForm] = useState(false);
-
-  // get cabins from supabase
-  // useEffect(function () {
-  //   getCabins().then(data => console.log('cabins data: ', data ))
-  // }, []);
+  // const [showForm, setShowForm] = useState(false);
 
   return (
     <>
       <Row type="horizontal">
         <Heading as="h1">All cabins</Heading>
         <p>Filter / Sort</p>
-
-        {/* <img src="https://ffglytqkuxpsyimghhhi.supabase.co/storage/v1/object/?public/cabin-omages/cabin-001.jpg" alt="cabin img" /> */}
       </Row>
 
       <Row>
         <CabinTable />
 
-        <Button
-          onClick={() => setShowForm(show => !show)}
-        >
+        {/* <Button onClick={() => setShowForm((show) => !show)}>
           Add New Cabin
         </Button>
-        {showForm && <CreateCabinForm />}
+        {showForm && <CreateCabinForm />} */}
+        <AddCabin />
       </Row>
     </>
   );
