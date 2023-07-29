@@ -8,7 +8,7 @@ function Settings() {
         <Heading as="h1">Update hotel settings</Heading>
         <UpdateSettingsForm />
       </Row>
-    )
+    );
 }
 
 export default Settings;

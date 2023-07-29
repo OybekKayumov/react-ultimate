@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Header from "./Header";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 import styled from "styled-components";
 
 const StyledAppLayout = styled.div`
@@ -21,12 +21,12 @@ const Container = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 3.2rem
+  gap: 3.2rem;
 `;
 
 const AppLayout = () => {
   return (
-    <StyledAppLayout >
+    <StyledAppLayout>
       {/* <p>APP LAYOUT</p> */}
 
       <Header />
@@ -39,7 +39,7 @@ const AppLayout = () => {
         </Container>
       </Main>
     </StyledAppLayout>
-  )
+  );
 }
 
 export default AppLayout;

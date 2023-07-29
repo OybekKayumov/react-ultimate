@@ -26,9 +26,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { errors } = formState;
   
   function onSubmit(data) {
-    const image = typeof data.image === 'string' 
-      ? data.image 
-      : data.image[0]
+    const image = typeof data.image === "string" ? data.image : data.image[0];
 
     if (isEditSession)
       editCabin(
@@ -36,7 +34,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
         {
           onSuccess: (data) => {
             reset();
-            onCloseModal?.()
+            onCloseModal?.();
           },
         }
       );
@@ -46,7 +44,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
         {
           onSuccess: (data) => {
             reset();
-            onCloseModal?.()
+            onCloseModal?.();
           },
         }
       );

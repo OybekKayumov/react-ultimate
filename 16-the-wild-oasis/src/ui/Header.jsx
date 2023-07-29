@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-300);
@@ -12,4 +12,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;
