@@ -32,3 +32,11 @@
           +import eslint from 'vite-plugin-eslint';
        
           +plugins: [react(), eslint()], 
+
+### supabase
+       https://supabase.com/dashboard/project/ffglytqkuxpsyimghhhi
+
+       - username
+       - password
+
+## _2023 07_

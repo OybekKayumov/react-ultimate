@@ -5,24 +5,26 @@ import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
 import { useLogin } from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
-// import { login } from "../../services/apiAuth";
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const {login, isLoading} = useLogin();
+  const [email, setEmail] = useState("oybek_k@yahoo.com");
+  const [password, setPassword] = useState("123456Q");
+  const { login, isLoading } = useLogin();
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if (!email || !password) return;
 
-    login({ email, password }, {
-      onSettled: () => {
-        setEmail("");
-        setPassword("");
-      },
-    })
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+      }
+    );
   }
 
   return (
@@ -38,6 +40,7 @@ function LoginForm() {
           disabled={isLoading}
         />
       </FormRowVertical>
+
       <FormRowVertical label="Password">
         <Input
           type="password"
