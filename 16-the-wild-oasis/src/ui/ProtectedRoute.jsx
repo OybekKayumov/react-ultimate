@@ -12,6 +12,7 @@ const FullPage = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 function ProtectedRoute({ children }) {
 
   const navigate = useNavigate();
@@ -39,4 +40,4 @@ function ProtectedRoute({ children }) {
   if (isAuthenticated) return children;
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;

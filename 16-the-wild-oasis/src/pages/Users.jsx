@@ -8,7 +8,7 @@ function NewUsers() {
 
     <SignupForm />
     </>
-  )
+  );
 }
 
 export default NewUsers;

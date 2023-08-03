@@ -20,7 +20,7 @@ function Login() {
       <Heading as="h4">Log in to your account</Heading>
       <LoginForm />
     </LoginLayout>
-  )
+  );
 }
 
 export default Login;
